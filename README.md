@@ -28,6 +28,7 @@
     │   ├ 10_randomX.in (ランダムケース, 0-indexed)
     │   ├ 20_cornerX.in (コーナーケース, 0-indexed)
     │   ├ generator.cc (ランダムケースの生成器)
+    │   ├ validator.cc (入力の検証)
     │   └ judge.cc (出力の判定)
     ├── sol-<lang>-<expected-judge> 解法、下記参照
     └── README.md (問題文, 解法説明, コーナーテスト説明など)
@@ -103,11 +104,11 @@ rime add <parent_problem_dir_name> testset tests
 ランダムケース (`generator.cc` で作ったもの) は `10_randomX.in` という名前にする。
 `generator.cc` には違う Seed 値をコマンドライン引数として与えて、異なるケースを生成するようにする。
 
-メモ(`generator.cc` のコンパイル): `g++ -std=c++20 -O2 -Wall -I ../../../common -o a.out generator.cc`
+メモ(`generator.cc` のコンパイル): `g++ -std=c++20 -O2 -Wall -I ../../_common -o gen.out generator.cc`
 
-メモ(テストの生成): `a(){ ./a.out $1 > $1; }` として `a <出力先ファイル>`
+メモ(テストの生成): `gen(){ ./gen.out $1 > $1; }` として `gen <出力先ファイル>`
 
-コーナーケースは `20_cornerX_<何のコーナーか>.in` という名前にする。
+コーナーケース・手作業用意ケースは `20_handX.in` とかの名前にする。
 どっちも最大 10 個まであれば十分だと思う。
 
 `TESTSET` ファイルの内容
