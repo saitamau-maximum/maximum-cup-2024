@@ -71,3 +71,9 @@ A_1 A_2 ... A_N
 ## 解法
 
 0 を (あれば) 1 つだけ残すと高々 $\log N$ 種類しかないので、あとは全探索。
+
+- `sol-cpp-ac`: C++ AC
+- `sol-py-ac`: Python AC
+- `sol-cpp-partial1`: C++ 部分点 1
+- `sol-py-partial1`: Python 部分点 1
+- `sol-cpp-wa-combi`: C++ WA (重複組み合わせで求める)
