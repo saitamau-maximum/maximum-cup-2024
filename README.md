@@ -99,7 +99,7 @@ rime add <parent_problem_dir_name> testset tests
 ```
 
 サンプルは `00_sampleX.in` という名前で `tests` ディレクトリに入れる。
-なお、 `X` は 0, 1, 2, ... というように連番にする。(0-indexed)
+なお、 `X` は 00, 01, 02, ... というように連番にする。(0-indexed)
 
 ランダムケース (`generator.cc` で作ったもの) は `10_randomX.in` という名前にする。
 `generator.cc` には違う Seed 値をコマンドライン引数として与えて、異なるケースを生成するようにする。
@@ -109,7 +109,8 @@ rime add <parent_problem_dir_name> testset tests
 メモ(テストの生成): `gen(){ ./gen.out $1 > $1; }` として `gen <出力先ファイル>`
 
 コーナーケース・手作業用意ケースは `20_handX.in` とかの名前にする。
-どっちも最大 10 個まであれば十分だと思う。
+
+Max ケース・ Min ケースは `30_maxX.in` とかの名前にする。
 
 `TESTSET` ファイルの内容
 

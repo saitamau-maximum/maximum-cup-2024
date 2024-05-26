@@ -6,8 +6,12 @@ a = set(list(map(int, input().split())))
 s = set()
 
 for x in a:
-  for y in a:
-    for z in a:
-      s.add(x + y + z)
+    for y in a:
+        for z in a:
+            s.add(x + y + z)
 
-print(len(s))
+ans = 0
+for x in s:
+    ans ^= x
+
+print(ans)

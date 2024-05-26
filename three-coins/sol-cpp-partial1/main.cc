@@ -12,5 +12,7 @@ int main() {
   rep(i, n) rep(j, n) rep(k, n) {
     s.insert(a[i] + a[j] + a[k]);
   }
-  cout << s.size() << endl;
+  ll ans = 0;
+  for (ll x : s) ans ^= x;
+  cout << ans << endl;
 }
