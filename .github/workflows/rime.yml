@@ -24,9 +24,15 @@ jobs:
       - name: Enumerate Problems
         id: problems
         run: |
-          problems=$(ls -d */ | grep -v _common | tr -d '/')
-          echo "Problems: $problems"
-          echo "problems=$problems" >> $GITHUB_OUTPUT
+          problems=$(ls -d */ | grep -v _common | tr -d '/' | tr ' ' '\n' | sort -bdfu)
+          echo "::group::Check Files"
+          echo $problems | tr ' ' '\n'
+          echo "::endgroup::"
+          {
+            echo 'problems<<EOF'
+            echo $problems | tr ' ' '\n'
+            echo EOF
+          } >> $GITHUB_OUTPUT
       - name: Cache Rime
         uses: actions/cache@v4
         with:
