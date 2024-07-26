@@ -44,6 +44,9 @@ mkdir output
 echo "Copying solution and inputs..."
 cp ../$SOLUTION_FILE main.cc
 cp ../$PROBLEM_NAME/tests/*.in input/
+for input in input/*.in; do
+  mv $input $(dirname $input)/$(basename $input .in).txt
+done
 
 # Compile the solution
 echo "Compiling solution..."
@@ -51,8 +54,8 @@ g++ -std=c++2a -O2 -o main main.cc
 
 # Run the solution
 echo "Running solution..."
-for input in input/*.in; do
-  output=output/$(basename $input .in).out
+for input in input/*.txt; do
+  output=output/$(basename $input)
   ./main < $input > $output
 done
 
