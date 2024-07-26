@@ -22,7 +22,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Enumerate Problems
-        id: problems
         run: |
           problems=$(ls -d */ | grep -v _common | tr -d '/' | tr ' ' '\n' | sort -bdfu)
           echo "::group::Check Files"
@@ -32,7 +31,7 @@ jobs:
             echo 'problems<<EOF'
             echo $problems | tr ' ' '\n'
             echo EOF
-          } >> $GITHUB_OUTPUT
+          } >> "$GITHUB_ENV"
       - name: Cache Rime
         uses: actions/cache@v4
         with:
@@ -40,7 +39,7 @@ jobs:
           key: rime
       - name: Run Tests
         run: |
-          for prob in ${{ steps.problems.outputs.problems }}; do
+          for prob in $problems; do
             echo ::group::$prob
             rime test $prob
             echo ::endgroup::
