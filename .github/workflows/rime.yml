@@ -16,7 +16,9 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: |
+            pypy3.10
+            3.12
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -24,9 +26,7 @@ jobs:
       - name: Enumerate Problems
         run: |
           problems=$(ls -d */ | grep -v _common | tr -d '/' | tr ' ' '\n' | sort -bdfu)
-          echo "::group::Check Files"
           echo $problems | tr ' ' '\n'
-          echo "::endgroup::"
           {
             echo 'problems<<EOF'
             echo $problems | tr ' ' '\n'
@@ -40,7 +40,23 @@ jobs:
       - name: Run Tests
         run: |
           for prob in $problems; do
-            echo ::group::$prob
-            rime test $prob
+            echo "$prob"
+            for pyfile in $prob/**/*.py; do
+              if grep -q 'pypy' $pyfile; then
+                echo "::group::Compile $pyfile with PyPy"
+                pypy -m py_compile $pyfile
+                echo "::endgroup::"
+              else
+                echo "::group::Compile $pyfile with CPython"
+                python -m py_compile $pyfile
+                echo "::endgroup::"
+              fi
+            done
+            echo "::group::Build"
+            rime build -k -j 2 -C -p $prob
+            echo "::endgroup::"
+            echo "::group::Test"
+            rime test -k -j 2 -C -p $prob
             echo ::endgroup::
+            echo ""
           done
