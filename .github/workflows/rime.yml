@@ -42,9 +42,13 @@ jobs:
           for prob in $problems; do
             echo ::group::$prob
             for pyfile in $prob/**/*.py; do
-              echo "Compiling $pyfile..."
-              python -m py_compile $pyfile
-              pypy -m py_compile $pyfile
+              if grep -q '^#!/usr/bin/env pypy3' $pyfile; then
+                echo "Compiling $pyfile with PyPy..."
+                pypy -m py_compile $pyfile
+              else
+                echo "Compiling $pyfile with CPython..."
+                python -m py_compile $pyfile
+              fi
             done
             echo "Running Rime..."
             rime test $prob
