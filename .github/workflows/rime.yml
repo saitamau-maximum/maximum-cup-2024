@@ -50,7 +50,9 @@ jobs:
                 python -m py_compile $pyfile
               fi
             done
+            echo "Building $prob..."
+            rime test -k -j 2 -C -p -d $prob
             echo "Running Rime..."
-            rime test -p -j 1 -k -C $prob
+            rime test -k -j 1 -C -p -d $prob
             echo ::endgroup::
           done
