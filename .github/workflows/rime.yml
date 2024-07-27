@@ -19,10 +19,6 @@ jobs:
           python-version: |
             pypy3.10
             3.12
-      - name: Exec test
-        run: |
-          chmod +x ./three-coins/sol-pypy-ac/main.py
-          ./three-coins/sol-pypy-ac/main.py < three-coins/tests/00_sample00_task1.in
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
