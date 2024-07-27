@@ -51,6 +51,6 @@ jobs:
               fi
             done
             echo "Running Rime..."
-            rime test $prob
+            rime test -p -C $prob
             echo ::endgroup::
           done
