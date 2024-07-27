@@ -41,6 +41,12 @@ jobs:
         run: |
           for prob in $problems; do
             echo ::group::$prob
+            for pyfile in $prob/**/*.py; do
+              echo "Compiling $pyfile..."
+              python -m py_compile $pyfile
+              pypy -m py_compile $pyfile
+            done
+            echo "Running Rime..."
             rime test $prob
             echo ::endgroup::
           done
