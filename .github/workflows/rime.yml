@@ -42,8 +42,7 @@ jobs:
           for prob in $problems; do
             echo ::group::$prob
             for pyfile in $prob/**/*.py; do
-              grep -q 'pypy' $pyfile
-              if [ $? -eq 0 ]; then
+              if grep -q 'pypy' $pyfile; then
                 echo "Compiling $pyfile with PyPy..."
                 pypy -m py_compile $pyfile
               else
