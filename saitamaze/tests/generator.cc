@@ -26,9 +26,9 @@ int main(int argc, char* argv[]) {
       println("6 5 3 5 8 9 7");
       println("9 3 2 3 8 4 6");
       println("2 6 4 3 1 8 1");
-      println("2 7 9 5 0 2 8");
+      println("2 7 9 5 3 2 8");
       println("8 4 1 9 7 4 6");
-      println("5 6 7 0 0 7 0");
+      println("5 6 7 2 4 7 1");
     } else if(namecontains("hand01")) {
       h = 10;
       w = 10;

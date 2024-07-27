@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
   map<int, int> cnt;
   for (int i = 0; i < h; ++i) {
     for (int j = 0; j < w; ++j) {
-      int h = inf.readInt(0, 1'000'000'000, format("h[%d][%d]", i, j));  // 0 <= x[i][j] <= 1e9
+      int h = inf.readInt(1, 1'000'000'000, format("h[%d][%d]", i, j));  // 1 <= x[i][j] <= 1e9
       cnt[h]++;
       if(j != w - 1) inf.readSpace();  // 空白
       else inf.readEoln();             // 改行
