@@ -25,6 +25,8 @@ jobs:
           python -m pip --version
           pypy --version
           which pypy
+          ls -l /usr/bin/python
+          ls -l /usr/bin/pypy
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
