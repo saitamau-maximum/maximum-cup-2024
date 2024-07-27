@@ -26,9 +26,7 @@ jobs:
       - name: Enumerate Problems
         run: |
           problems=$(ls -d */ | grep -v _common | tr -d '/' | tr ' ' '\n' | sort -bdfu)
-          echo "::group::Check Files"
           echo $problems | tr ' ' '\n'
-          echo "::endgroup::"
           {
             echo 'problems<<EOF'
             echo $problems | tr ' ' '\n'
