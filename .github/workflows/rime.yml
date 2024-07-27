@@ -40,7 +40,7 @@ jobs:
       - name: Run Tests
         run: |
           for prob in $problems; do
-            echo ::group::$prob
+            echo "$prob"
             for pyfile in $prob/**/*.py; do
               if grep -q 'pypy' $pyfile; then
                 echo "::group::Compile $pyfile with PyPy"
@@ -53,10 +53,10 @@ jobs:
               fi
             done
             echo "::group::Build"
-            rime build -k -j 2 -C -p -d $prob
+            rime build -k -j 2 -C -p $prob
             echo "::endgroup::"
             echo "::group::Test"
-            rime test -k -j 1 -C -p -d $prob
+            rime test -k -j 2 -C -p $prob
             echo ::endgroup::
-            echo ::endgroup::
+            echo ""
           done
