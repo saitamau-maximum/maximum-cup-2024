@@ -43,16 +43,20 @@ jobs:
             echo ::group::$prob
             for pyfile in $prob/**/*.py; do
               if grep -q 'pypy' $pyfile; then
-                echo "Compiling $pyfile with PyPy..."
+                echo "::group::Compile $pyfile with PyPy"
                 pypy -m py_compile $pyfile
+                echo "::endgroup::"
               else
-                echo "Compiling $pyfile with CPython..."
+                echo "::group::Compile $pyfile with CPython"
                 python -m py_compile $pyfile
+                echo "::endgroup::"
               fi
             done
-            echo "Building $prob..."
-            rime test -k -j 2 -C -p -d $prob
-            echo "Running Rime..."
+            echo "::group::Build"
+            rime build -k -j 2 -C -p -d $prob
+            echo "::endgroup::"
+            echo "::group::Test"
             rime test -k -j 1 -C -p -d $prob
+            echo ::endgroup::
             echo ::endgroup::
           done
