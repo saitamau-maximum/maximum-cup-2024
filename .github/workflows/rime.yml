@@ -42,7 +42,8 @@ jobs:
           for prob in $problems; do
             echo ::group::$prob
             for pyfile in $prob/**/*.py; do
-              if grep -q '^#!/usr/bin/env pypy3' $pyfile; then
+              grep -q 'pypy' $pyfile
+              if [ $? -eq 0 ]; then
                 echo "Compiling $pyfile with PyPy..."
                 pypy -m py_compile $pyfile
               else
