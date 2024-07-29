@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env pypy
 
 def main():
     import sys
