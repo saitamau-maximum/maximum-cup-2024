@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import heapq
-from collections import defaultdict
 
 # 定数
 INF = float('inf')
@@ -31,45 +30,52 @@ def main():
             row.append(value)
             index += 1
         x.append(row)
-    
-    # 高さの圧縮を効率化するための辞書を使用
+
+    # 高さの圧縮
     comp = sorted(set(val for row in x for val in row))
     comp_map = {value: idx for idx, value in enumerate(comp)}
-    group = defaultdict(list)
+    group = [[] for _ in range(len(comp_map))]
     
     for i in range(h):
         for j in range(w):
             x[i][j] = comp_map[x[i][j]]
             group[x[i][j]].append((i, j))
-    
+
+    # 辺を列挙
+    edges = [[[] for _ in range(w)] for _ in range(h)]
+    for i in range(h):
+        for j in range(w):
+            # 同じ高さのマスに移動
+            for ni, nj in group[x[i][j]]:
+                if ni == i and nj == j:
+                    continue
+                cost = abs(ni - i) + abs(nj - j) - 1
+                edges[i][j].append((cost, ni, nj))
+            # 隣接マスに移動
+            for dir in range(DIR_NUM):
+                ni = i + dx[dir]
+                nj = j + dy[dir]
+                if outField(ni, nj, h, w) or x[i][j] == x[ni][nj]:
+                    continue
+                # 隣接マスの高さが異なる場合のみ追加
+                edges[i][j].append((1, ni, nj))
+
     dist = [[INF] * w for _ in range(h)]
     dist[0][0] = 0
     pq = [(0, 0, 0)]  # (距離, i, j)
     
     while pq:
         d, i, j = heapq.heappop(pq)
+        if i == h - 1 and j == w - 1:
+            print(dist[h - 1][w - 1])
+            return
         if dist[i][j] < d:
             continue
-        # 同じ高さのマスに移動
-        for ni, nj in group[x[i][j]]:
-            if ni == i and nj == j:
+        for cost, ni, nj in edges[i][j]:
+            if dist[ni][nj] <= d + cost:
                 continue
-            cost = d + abs(ni - i) + abs(nj - j) - 1
-            if dist[ni][nj] > cost:
-                dist[ni][nj] = cost
-                heapq.heappush(pq, (cost, ni, nj))
-        # 隣接マスに移動
-        for dir in range(DIR_NUM):
-            ni = i + dx[dir]
-            nj = j + dy[dir]
-            if outField(ni, nj, h, w):
-                continue
-            nd = d + 1
-            if dist[ni][nj] > nd:
-                dist[ni][nj] = nd
-                heapq.heappush(pq, (nd, ni, nj))
-    
-    print(dist[h - 1][w - 1])
+            dist[ni][nj] = d + cost
+            heapq.heappush(pq, (dist[ni][nj], ni, nj))
 
 if __name__ == "__main__":
     main()

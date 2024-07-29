@@ -4,9 +4,9 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
   registerValidation(argc, argv);
-  int h = inf.readInt(1, 100, "n");  // 1 <= h <= 100
+  int h = inf.readInt(1, 200, "n");  // 1 <= h <= 200
   inf.readSpace();                     // 空白
-  int w = inf.readInt(1, 100, "n");  // 1 <= w <= 100
+  int w = inf.readInt(1, 200, "n");  // 1 <= w <= 200
   inf.readEoln();                      // 改行
   
   map<int, int> cnt;
@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
       cnt[h]++;
       if(j != w - 1) inf.readSpace();  // 空白
       else inf.readEoln();             // 改行
-      ensuref(cnt[h] <= 100, "h[%d][%d] = %d, cnt[%d] = %d", i, j, h, h, cnt[h]);
+      ensuref(cnt[h] <= 20, "h[%d][%d] = %d, cnt[%d] = %d", i, j, h, h, cnt[h]);
     }
   }
   inf.readEof();   // EOF
