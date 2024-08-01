@@ -105,6 +105,9 @@ A_1 A_2 ... A_N
 重複を削除すると高々 $\log N$ 種類しかないので、あとは全探索。
 
 - `sol-cpp-ac`: C++ AC
-- `sol-py-ac`: Python AC
+- `sol-cpy-ac`: CPython AC
+- `sol-pypy-ac`: PyPy AC
 - `sol-cpp-partial1`: C++ 部分点 1
-- `sol-py-partial1`: Python 部分点 1
+- `sol-cpy-partial1`: CPython 部分点 1
+- `sol-pypy-partial1`: PyPy 部分点 1
+- `sol-cpp-wa-multiset`: C++ WA (集合 $S$ を多重集合としている)
