@@ -12,14 +12,49 @@ int main(int argc, char* argv[]) {
 
   // ---------- hand ---------- //
   if (namecontains("hand00")) {
+    // c00 = 0, c01 = 1
+    // c10 = 1, c11 = 0
     println(2, 0);
     println(0, 1);
     println(1, 0);
     return 0;
   }
+  if (namecontains("hand01")) {
+    // c00 = 0, c01 = 1
+    // c10 = 2, c11 = 0
+    println(3, 0);
+    println(0, 1, 1);
+    println(1, 0, 0);
+    return 0;
+  }
+  if (namecontains("hand02")) {
+    // c00 = 0, c01 = 2
+    // c10 = 1, c11 = 0
+    println(3, 0);
+    println(0, 0, 1);
+    println(1, 1, 0);
+    return 0;
+  }
+  if (namecontains("hand03")) {
+    // c00 = 1, c01 = 1
+    // c10 = 1, c11 = 0
+    println(3, 0);
+    println(0, 0, 1);
+    println(0, 1, 0);
+    return 0;
+  }
+  if (namecontains("hand04")) {
+    // c00 = 1, c01 = 1
+    // c10 = 1, c11 = 1
+    println(4, 0);
+    println(0, 0, 1, 1);
+    println(0, 1, 0, 1);
+    return 0;
+  }
 
   // ---------- others ---------- //
   int n = -1, m = -1;
+  int param_free = -1, param_left = -1, param_right = -1;
 
   // task1
   if (namecontains("task1")) {
@@ -39,13 +74,18 @@ int main(int argc, char* argv[]) {
       n = 200'000;
     }
     else {
-      // to be written
+      n = rnd.next(3, 200'000);
     }
   }
   else {
     cerr << "Invalid filename: " << filename << endl;
     return 1;
   }
+
+  param_free = rnd.next(0, n);
+  param_left = rnd.next(0, n - param_free);
+  param_right = n - param_free - param_left;
+  m = rnd.next(0, (int) min((long long) param_left * param_right, 200'000LL));
 
   if (namecontains("max00") || namecontains("max01")) m = 0;                      // 無辺
   if (namecontains("max02") || namecontains("max03")) m = n - 1;                  // スターグラフ
@@ -71,7 +111,19 @@ int main(int argc, char* argv[]) {
   }
   else {
     // その他のケース
-    // to be written
+    // [1, param_free]: 孤立点
+    // [param_free+1, param_free+param_left]: 左側の完全グラフ
+    // [param_free+param_left+1, n]: 右側の完全グラフ
+    set<pair<int, int>> edges;
+    while (edges.size() < m) {
+      int u = rnd.next(1, param_left) + param_free;
+      int v = rnd.next(1, param_right) + param_free + param_left;
+      if (u > v) swap(u, v);
+      edges.insert({ u, v });
+    }
+    vector<pair<int, int>> edges_vec(edges.begin(), edges.end());
+    shuffle(edges_vec.begin(), edges_vec.end());
+    for (auto [u, v] : edges_vec) println(u, v);
   }
 
   // ---------- alpha, beta の生成 ---------- //
@@ -116,7 +168,24 @@ int main(int argc, char* argv[]) {
   }
   else {
     // その他のケース
-    // to be written
+    if (namecontains("random00")) {
+      // 二部グラフ内で異なるものを入れる
+      for (int i = 0; i < param_free; ++i) alpha[i] = rnd.next(0, 1);
+      for (int i = 0; i < param_left; ++i) alpha[i + param_free] = 0;
+      for (int i = 0; i < param_right; ++i) alpha[i + param_free + param_left] = 1;
+      for (int i = 0; i < param_free; ++i) alpha[i] = rnd.next(0, 1);
+      for (int i = 0; i < param_left; ++i) alpha[i + param_free] = 1;
+      for (int i = 0; i < param_right; ++i) alpha[i + param_free + param_left] = 0;
+    }
+    else {
+      // ランダムに
+      for (int i = 0; i < param_free; ++i) alpha[i] = rnd.next(0, 1);
+      for (int i = 0; i < param_left; ++i) alpha[i + param_free] = 0;
+      for (int i = 0; i < param_right; ++i) alpha[i + param_free + param_left] = 1;
+      for (int i = 0; i < param_free; ++i) alpha[i] = rnd.next(0, 1);
+      for (int i = 0; i < param_left; ++i) alpha[i + param_free] = 0;
+      for (int i = 0; i < param_right; ++i) alpha[i + param_free + param_left] = 1;
+    }
   }
 
   println(alpha);

@@ -39,7 +39,6 @@ int main(int argc, char *argv[]) {
   }
 
   // infile 名は argv[1]
-  // hand00 は n <= 8 だが、これで判定するとスコアが下がってしまう
   bool isTask1 = (string(argv[1]).find("task1") != string::npos);
 
   if (ans_op == -1) {
