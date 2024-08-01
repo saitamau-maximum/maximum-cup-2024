@@ -7,7 +7,7 @@ using namespace std;
 #define namecontains(t) (filename.find(t) != string::npos)
 
 using ll           = long long;
-const int bit_size = 1000;
+const int bit_size = 3000;
 struct weighted_dsu {
   public:
   weighted_dsu(): _n(0) {}
@@ -66,7 +66,7 @@ int main(int argc, char* argv[]) {
 
   // 問題に応じた最大値や制約を設定
   constexpr long long MaxVal = 1'000'000'000; // 1e9
-  constexpr int MaxN         = 1'000;         // 1000
+  constexpr int MaxN         = 3'000;         // 3000
   constexpr int MaxQ         = 200'000;       // 2e5
   constexpr int PartialQ     = 3000;          // 3000
 

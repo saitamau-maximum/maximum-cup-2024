@@ -1,4 +1,4 @@
-#!/usr/bin/env pypy
+#!/usr/bin/env pypy3
 
 import sys
 
@@ -7,12 +7,12 @@ class WeightedDSU:
     def __init__(self, n):
         self._n = n
         self.parent_or_size = [-1] * n
-        self.diff_weight = [[False] * 1000 for _ in range(n)]
+        self.diff_weight = [[False] * n for _ in range(n)]
 
     def merge(self, a, b, w):
         wa = self.weight(a)
         wb = self.weight(b)
-        w_new = [wa[i] ^ wb[i] ^ w[i] for i in range(1000)]
+        w_new = [wa[i] ^ wb[i] ^ w[i] for i in range(self._n)]
 
         x, y = self.leader(a), self.leader(b)
         if x == y:
@@ -34,7 +34,7 @@ class WeightedDSU:
         if self.parent_or_size[a] < 0:
             return a
         r = self.leader(self.parent_or_size[a])
-        for i in range(1000):
+        for i in range(self._n):
             self.diff_weight[a][i] = self.diff_weight[a][i] ^ self.diff_weight[self.parent_or_size[a]][i]
         self.parent_or_size[a] = r
         return r
@@ -46,10 +46,10 @@ class WeightedDSU:
     def diff(self, x, y):
         wx = self.weight(x)
         wy = self.weight(y)
-        return [wx[i] ^ wy[i] for i in range(1000)]
+        return [wx[i] ^ wy[i] for i in range(self._n)]
 
-def generate_mask(l, r):
-    mask = [False] * 1000
+def generate_mask(n, l, r):
+    mask = [False] * n
     for i in range(l, r + 1):
         mask[i] = True
     return mask
@@ -94,7 +94,7 @@ def main():
     
     for t, L, R, l, r in query:
         if t == 1:
-            uf.merge(L, R, generate_mask(l, r))
+            uf.merge(L, R, generate_mask(n, l, r))
         else:
             if uf.same(L, R):
                 print(str(sum(uf.diff(L, R))))

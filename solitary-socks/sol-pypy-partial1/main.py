@@ -3,7 +3,6 @@
 import sys
 from collections import deque
 
-bit_size = 1000
 
 def main():
     input = sys.stdin.read
@@ -38,8 +37,8 @@ def main():
         query[i] = (t, L, R, l, r)
     
     masks = []
-    for i in range(bit_size + 1):
-        mask = [0] * bit_size
+    for i in range(n + 1):
+        mask = [0] * n
         for j in range(i):
             mask[j] = 1
         masks.append(mask)
@@ -51,7 +50,7 @@ def main():
             Graph[R].append((L, l, r))
         else:
             visited = [False] * len(comp)
-            que = deque([(L, [0] * bit_size)])
+            que = deque([(L, [0] * n)])
             
             arrived = False
             while que:

@@ -5,7 +5,7 @@
 using namespace std;
 using ll = long long;
 
-const int bit_size = 1000;
+const int bit_size = 3000;
 struct weighted_dsu {
   public:
   weighted_dsu(): _n(0) {}
@@ -61,7 +61,7 @@ struct weighted_dsu {
 int main(int argc, char* argv[]) {
   registerValidation(argc, argv);
 
-  int N = inf.readInt(1, 1'000, "N"); // 1 <= N <= 1000
+  int N = inf.readInt(1, 3'000, "N"); // 1 <= N <= 3000
   inf.readSpace();
   int Q = inf.readInt(1, 200'000, "Q"); // 1 <= Q <= 2 * 10^5
   inf.readEoln();                       // 改行

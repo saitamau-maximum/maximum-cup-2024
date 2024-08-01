@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int bit_size = 1000;
+const int bit_size = 3000;
 struct weighted_dsu {
   public:
   weighted_dsu(): _n(0) {}
