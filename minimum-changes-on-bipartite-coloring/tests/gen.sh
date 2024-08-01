@@ -31,6 +31,8 @@ filenames=(
   "03_max01_all.in"
   "03_max02_all.in"
   "03_max03_all.in"
+  "03_max04_all.in"
+  "03_max05_all.in"
 )
 
 echo "Compiling generator..."
