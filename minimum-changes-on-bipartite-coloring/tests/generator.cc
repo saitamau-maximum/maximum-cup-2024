@@ -94,6 +94,10 @@ int main(int argc, char* argv[]) {
   if (namecontains("max00") || namecontains("max01")) m = 0;                      // 無辺
   if (namecontains("max02") || namecontains("max03")) m = n - 1;                  // スターグラフ
   if (namecontains("max04_task1") || namecontains("max05_task1")) m = n * n / 4;  // n/2, n/2 の完全グラフ
+  if (namecontains("random05") || namecontains("random06") || namecontains("random07") || namecontains("random08") || namecontains("random09")) {
+    m = 1;
+    param_free = n - 2, param_left = 1, param_right = 1;
+  }
 
   println(n, m);
 
