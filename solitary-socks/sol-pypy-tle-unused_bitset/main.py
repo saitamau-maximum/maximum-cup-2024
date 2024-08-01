@@ -96,11 +96,10 @@ def main():
         if t == 1:
             uf.merge(L, R, generate_mask(l, r))
         else:
-            if not uf.same(L, R):
-                output.append("Ambiguous")
+            if uf.same(L, R):
+                print(str(sum(uf.diff(L, R))))
             else:
-                diff = uf.diff(L, R)
-                output.append(str(sum(diff)))
+                print("Ambiguous")
     
     print("\n".join(output))
 

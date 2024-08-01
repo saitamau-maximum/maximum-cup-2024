@@ -74,23 +74,22 @@ def main():
     
     comp = sorted(set(comp))
     comp_map = {v: i for i, v in enumerate(comp)}
-    masks = [((1 << i) - 1) for i in range(1, n + 1)]
+    masks = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(i, n):
+            masks[i][j] = (1 << (j - i + 1)) - 1 << i
     
     uf = WeightedDSU(len(comp))
-    output = []
-    
     for t, L, R, l, r in query:
         L = comp_map[L]
         R = comp_map[R]
         if t == 1:
-            uf.merge(L, R, masks[r - l] << l)
+            uf.merge(L, R, masks[l][r])
         else:
-            if not uf.same(L, R):
-                output.append("Ambiguous")
+            if uf.same(L, R):
+                print(uf.diff(L, R).bit_count())
             else:
-                output.append(str(bin(uf.diff(L, R)).count('1')))
-    
-    print("\n".join(output))
+                print("Ambiguous")
 
 if __name__ == "__main__":
     main()
