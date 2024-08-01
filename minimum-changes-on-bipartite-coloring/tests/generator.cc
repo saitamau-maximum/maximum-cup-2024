@@ -63,7 +63,7 @@ int main(int argc, char* argv[]) {
     }
     else if (namecontains("min")) {
       // m = 0 は hand00 でカバー
-      n = 2, m = 1;
+      n = 2;
     }
     else {
       n = rnd.next(3, 7);  // 3 <= n <= 7 (2, 8 は上でカバー)
@@ -72,6 +72,9 @@ int main(int argc, char* argv[]) {
   else if (namecontains("all")) {
     if (namecontains("max")) {
       n = 200'000;
+    }
+    else if (namecontains("random01")) {
+      n = 25;
     }
     else {
       n = rnd.next(3, 200'000);
@@ -87,6 +90,7 @@ int main(int argc, char* argv[]) {
   param_right = n - param_free - param_left;
   m = rnd.next(0, (int) min((long long) param_left * param_right, 200'000LL));
 
+  if (namecontains("min00") || namecontains("min01")) m = 1;
   if (namecontains("max00") || namecontains("max01")) m = 0;                      // 無辺
   if (namecontains("max02") || namecontains("max03")) m = n - 1;                  // スターグラフ
   if (namecontains("max04_task1") || namecontains("max05_task1")) m = n * n / 4;  // n/2, n/2 の完全グラフ
@@ -97,7 +101,7 @@ int main(int argc, char* argv[]) {
   if (namecontains("min00") || namecontains("min01")) {
     println(1, 2);
   }
-  if (namecontains("max02") || namecontains("max03")) {
+  else if (namecontains("max02") || namecontains("max03")) {
     // スターグラフ
     for (int i = 2; i <= n; i++) println(1, i);
   }
@@ -185,6 +189,22 @@ int main(int argc, char* argv[]) {
       for (int i = 0; i < param_left; ++i) beta[i + param_free] = 0;
       for (int i = 0; i < param_right; ++i) beta[i + param_free + param_left] = 1;
     }
+
+    // 個数を数えて良い彩色でなければ適当に変える
+    int cnt_alpha_0 = 0, cnt_alpha_1 = 0;
+    int cnt_beta_0 = 0, cnt_beta_1 = 0;
+    for (int i = 0; i < n; ++i) {
+      (alpha[i] == 0 ? cnt_alpha_0 : cnt_alpha_1)++;
+      (beta[i] == 0 ? cnt_beta_0 : cnt_beta_1)++;
+    }
+    // 0 or 1 どちらか一方のみ実行されるはず
+    ensure(cnt_alpha_0 + cnt_alpha_1 >= 2);
+    if (cnt_alpha_0 == 0) alpha[rnd.next(0, param_free - 1)] = 0;
+    if (cnt_alpha_1 == 0) alpha[rnd.next(param_free, param_free + param_left - 1)] = 1;
+
+    ensure(cnt_beta_0 + cnt_beta_1 >= 2);
+    if (cnt_beta_0 == 0) beta[rnd.next(0, param_free - 1)] = 0;
+    if (cnt_beta_1 == 0) beta[rnd.next(param_free, param_free + param_left - 1)] = 1;
   }
 
   println(alpha);

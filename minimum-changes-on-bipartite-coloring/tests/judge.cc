@@ -9,7 +9,7 @@ inline void quitWithPoint(int point, TResult result, string message) {
     quit(result, message);
   }
   else {
-    quitp(point, message);
+    quit(result, message);
   }
 }
 
