@@ -118,7 +118,6 @@ int main(int argc, char* argv[]) {
     while (edges.size() < m) {
       int u = rnd.next(1, param_left) + param_free;
       int v = rnd.next(1, param_right) + param_free + param_left;
-      if (u > v) swap(u, v);
       edges.insert({ u, v });
     }
     vector<pair<int, int>> edges_vec(edges.begin(), edges.end());
@@ -173,18 +172,18 @@ int main(int argc, char* argv[]) {
       for (int i = 0; i < param_free; ++i) alpha[i] = rnd.next(0, 1);
       for (int i = 0; i < param_left; ++i) alpha[i + param_free] = 0;
       for (int i = 0; i < param_right; ++i) alpha[i + param_free + param_left] = 1;
-      for (int i = 0; i < param_free; ++i) alpha[i] = rnd.next(0, 1);
-      for (int i = 0; i < param_left; ++i) alpha[i + param_free] = 1;
-      for (int i = 0; i < param_right; ++i) alpha[i + param_free + param_left] = 0;
+      for (int i = 0; i < param_free; ++i) beta[i] = rnd.next(0, 1);
+      for (int i = 0; i < param_left; ++i) beta[i + param_free] = 1;
+      for (int i = 0; i < param_right; ++i) beta[i + param_free + param_left] = 0;
     }
     else {
       // ランダムに
       for (int i = 0; i < param_free; ++i) alpha[i] = rnd.next(0, 1);
       for (int i = 0; i < param_left; ++i) alpha[i + param_free] = 0;
       for (int i = 0; i < param_right; ++i) alpha[i + param_free + param_left] = 1;
-      for (int i = 0; i < param_free; ++i) alpha[i] = rnd.next(0, 1);
-      for (int i = 0; i < param_left; ++i) alpha[i + param_free] = 0;
-      for (int i = 0; i < param_right; ++i) alpha[i + param_free + param_left] = 1;
+      for (int i = 0; i < param_free; ++i) beta[i] = rnd.next(0, 1);
+      for (int i = 0; i < param_left; ++i) beta[i + param_free] = 0;
+      for (int i = 0; i < param_right; ++i) beta[i + param_free + param_left] = 1;
     }
   }
 
