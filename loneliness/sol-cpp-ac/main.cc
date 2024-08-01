@@ -79,7 +79,7 @@ int main() {
 
   weighted_dsu uf(comp.size());
   for(auto& [t, L, R, l, r]: query) {
-    if(t == 1) uf.merge(L, R, (1LL << r) - (1LL << (l-1)));
+    if(t == 1) uf.merge(L, R, (1LL << r) - (1LL << (l - 1)));
     else {
       if(!uf.same(L, R)) cout << "Ambiguous\n";
       else cout << __builtin_popcountll(uf.diff(L, R)) << '\n';

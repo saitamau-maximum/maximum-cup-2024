@@ -31,8 +31,7 @@ int main() {
     if(t == 1) {
       Graph[L].emplace_back(R, l, r);
       Graph[R].emplace_back(L, l, r);
-    }
-    else {
+    } else {
       // 愚直に Graph 上を探索
       vector<bool> visited(comp.size(), false);
       queue<pair<int, ll>> que;
