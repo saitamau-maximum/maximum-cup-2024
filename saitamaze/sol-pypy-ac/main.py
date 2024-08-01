@@ -1,9 +1,10 @@
 #!/usr/bin/env pypy
 
 import heapq
+from sys import stdin
 
 # 定数
-INF = float('inf')
+INF = 10 ** 18
 
 # 方向ベクトル
 DIR_NUM = 4
@@ -15,21 +16,8 @@ def outField(x, y, h, w):
     return not (0 <= x < h and 0 <= y < w)
 
 def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-
-    h = int(data[0])
-    w = int(data[1])
-    x = []
-    index = 2
-    for i in range(h):
-        row = []
-        for j in range(w):
-            value = int(data[index])
-            row.append(value)
-            index += 1
-        x.append(row)
+    h, w = map(int, stdin.readline().split())
+    x = [list(map(int, stdin.readline().split())) for i in range(h)]
 
     # 高さの圧縮
     comp = sorted(set(val for row in x for val in row))
