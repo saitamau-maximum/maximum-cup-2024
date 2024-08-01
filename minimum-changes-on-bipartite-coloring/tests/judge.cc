@@ -38,8 +38,7 @@ int main(int argc, char *argv[]) {
     quitWithPoint(0, _wa, "wrong operation count");
   }
 
-  // infile 名は argv[1]
-  bool isTask1 = (string(argv[1]).find("task1") != string::npos);
+  bool isTask1 = n <= 8;
 
   if (ans_op == -1) {
     if (ouf.seekEof())
