@@ -6,5 +6,5 @@ cxx_judge(
     variant=testlib_judge_runner,
     flags=["-std=c++2a", "-O2"],
 )
-id = "three-coins"
+id = "saitama-venice-university"
 subtask_testset(name="All", score=100, input_patterns=["*_all.in"])
