@@ -26,13 +26,11 @@ filenames=(
   "03_max03_all.in"
 )
 
-if [ ! -f gen.out ]; then
-  echo "Compiling generator..."
-  g++ -std=c++2a -O2 -Wall -Wextra -I../../_common -o gen.out generator.cc
-  if [ $? -ne 0 ]; then
-    echo "Compilation failed."
-    exit 1
-  fi
+echo "Compiling generator..."
+g++ -std=c++2a -O2 -Wall -Wextra -I../../_common -o gen.out generator.cc
+if [ $? -ne 0 ]; then
+  echo "Compilation failed."
+  exit 1
 fi
 
 echo "Generating ${#filenames[@]} test cases..."

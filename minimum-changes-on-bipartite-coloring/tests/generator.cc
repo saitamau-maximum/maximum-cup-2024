@@ -27,10 +27,11 @@ int main(int argc, char* argv[]) {
       n = 8;
     }
     else if (namecontains("min")) {
-      n = 1, m = 0;
+      // m = 0 は hand00 でカバー
+      n = 2, m = 1;
     }
     else {
-      n = rnd.next(2, 7);  // 2 <= n <= 7 (1, 8 は上でカバー)
+      n = rnd.next(3, 7);  // 3 <= n <= 7 (2, 8 は上でカバー)
     }
   }
   else if (namecontains("all")) {
@@ -53,6 +54,9 @@ int main(int argc, char* argv[]) {
   println(n, m);
 
   // ---------- 辺の生成 ---------- //
+  if (namecontains("min00") || namecontains("min01")) {
+    println(1, 2);
+  }
   if (namecontains("max02") || namecontains("max03")) {
     // スターグラフ
     for (int i = 2; i <= n; i++) println(1, i);
@@ -73,12 +77,12 @@ int main(int argc, char* argv[]) {
   // ---------- alpha, beta の生成 ---------- //
   vector<int> alpha(n), beta(n);
   if (namecontains("min00")) {
-    // 1 頂点 0 辺の alpha = beta
-    alpha = beta = { 0 };
+    // 2 頂点 1 辺の alpha = beta
+    alpha = beta = { 0, 1 };
   }
   else if (namecontains("min01")) {
-    // 1 頂点 0 辺の alpha != beta
-    alpha = { 0 }, beta = { 1 };
+    // 2 頂点 1 辺の alpha != beta
+    alpha = { 0, 1 }, beta = { 1, 0 };
   }
   else if (namecontains("max00")) {
     // 無辺の alpha = beta

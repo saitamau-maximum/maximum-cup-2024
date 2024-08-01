@@ -25,7 +25,7 @@ Asa さんは、 $\alpha$ に対して以下の操作を繰り返すことで、
 
 ## 制約
 
-- $1 \le n \le 2 \times 10^5$
+- $2 \le n \le 2 \times 10^5$
 - $0 \le m \le \min\left( \dfrac{n (n - 1)}{2}, 2 \times 10^5 \right)$
 - $1 \le u_i < v_i \le n$
 - $\alpha(v), \beta(v) \in \\{ 0, 1 \\}$
@@ -159,3 +159,5 @@ v_t c_t
 このようなグラフを作成し、最短経路を求めることで解くことができる。
 
 ### 満点解法
+
+(partial3: 操作回数のみ)

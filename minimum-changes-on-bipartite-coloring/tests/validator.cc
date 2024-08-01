@@ -5,14 +5,14 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
   registerValidation(argc, argv);
-  int n = inf.readInt(1, 200'000, "n");  // 1 <= n <= 2e5
+  int n = inf.readInt(2, 200'000, "n");  // 1 <= n <= 2e5
 
   inf.readSpace();
 
   long long m_max_tmp = (long long) n * (n - 1) / 2;
   if (m_max_tmp >= 200'000) m_max_tmp = 200'000;
   int m_max = (int) m_max_tmp;
-  int m = inf.readInt(1, m_max, "m");  // 0 <= m <= 2e5
+  int m = inf.readInt(0, m_max, "m");  // 0 <= m <= 2e5
 
   inf.readEoln();
 
