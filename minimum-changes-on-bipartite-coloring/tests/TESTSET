@@ -1,0 +1,11 @@
+# -*- coding: utf-8; mode: python -*-
+cxx_validator(src="validator.cc", dependency=["testlib.h"], flags=["-std=c++2a", "-O2"])
+cxx_judge(
+    src="judge.cc",
+    dependency=["testlib.h"],
+    variant=testlib_judge_runner,
+    flags=["-std=c++2a", "-O2"],
+)
+id = "minimum-changes-on-bipartite-coloring"
+subtask_testset(name="Task 1", input_patterns=["*_task1.in"])
+subtask_testset(name="All", input_patterns=["*_all.in"])
