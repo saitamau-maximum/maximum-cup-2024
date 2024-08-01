@@ -4,14 +4,12 @@
 
 using namespace std;
 using ll = long long;
-
-const int bit_size = 3000;
 struct weighted_dsu {
   public:
   weighted_dsu(): _n(0) {}
   explicit weighted_dsu(ll n): _n(n), parent_or_size(n, -1), diff_weight(n, 0) {}
 
-  ll merge(ll a, ll b, bitset<bit_size> w) {
+  ll merge(ll a, ll b, ll w) {
     assert(0 <= a && a < _n);
     assert(0 <= b && b < _n);
 
@@ -43,26 +41,24 @@ struct weighted_dsu {
     return parent_or_size[a] = r;
   }
 
-  bitset<bit_size> weight(ll x) {
+  ll weight(ll x) {
     leader(x); // 経路圧縮
     return diff_weight[x];
   }
 
-  bitset<bit_size> diff(ll x, ll y) {
+  ll diff(ll x, ll y) {
     return weight(y) ^ weight(x);
   }
 
   private:
   ll _n;
   vector<ll> parent_or_size;
-  vector<bitset<bit_size>> diff_weight;
+  vector<ll> diff_weight;
 };
 
 int main(int argc, char* argv[]) {
   registerValidation(argc, argv);
 
-  int N = inf.readInt(1, 3'000, "N"); // 1 <= N <= 3000
-  inf.readSpace();
   int Q = inf.readInt(1, 200'000, "Q"); // 1 <= Q <= 2 * 10^5
   inf.readEoln();                       // 改行
 
@@ -78,9 +74,9 @@ int main(int argc, char* argv[]) {
     int l = -1, r = -1;
     if(t == 1) {
       inf.readSpace();
-      l = inf.readInt(1, N, "l"); // 1 <= l <= r <= N
+      l = inf.readInt(1, 60, "l"); // 1 <= l <= r <= 60
       inf.readSpace();
-      r = inf.readInt(l, N, "r"); // 1 <= l <= r <= N
+      r = inf.readInt(l, 60, "r"); // 1 <= l <= r <= 60
     }
     inf.readEoln(); // 改行
 
@@ -92,12 +88,6 @@ int main(int argc, char* argv[]) {
 
   sort(comp.begin(), comp.end());
   comp.erase(unique(comp.begin(), comp.end()), comp.end());
-  vector<bitset<bit_size>> masks;
-  for(int i = 0; i <= bit_size; i++) {
-    bitset<bit_size> mask;
-    for(int j = 0; j < i; j++) mask.set(j);
-    masks.emplace_back(mask);
-  }
 
   // Query 1 の Validation
   int q2_cnt = 0;
@@ -109,8 +99,8 @@ int main(int argc, char* argv[]) {
     }
     L = lower_bound(comp.begin(), comp.end(), L) - comp.begin();
     R = lower_bound(comp.begin(), comp.end(), R) - comp.begin();
-    ensuref(!uf.same(L, R) || uf.diff(L, R) == (masks[l - 1] ^ masks[r]), "Invalid query %d %d %d %d %d\ndiff: %s", t, L, R, l, r, uf.diff(L, R).to_string().c_str());
-    uf.merge(L, R, masks[l - 1] ^ masks[r]);
+    ensuref(!uf.same(L, R) || uf.diff(L, R) == ((1LL << l) - 1) ^ ((1LL << r) - 1), "Invalid query %d %d %d %d %d\n", t, L, R, l, r);
+    uf.merge(L, R, ((1LL << l) - 1) ^ ((1LL << r) - 1));
   }
   ensuref(q2_cnt != 0, "Query 2 is not found");
 

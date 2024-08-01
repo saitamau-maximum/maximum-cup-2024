@@ -49,9 +49,8 @@ def main():
     data = input().split()
     
     index = 0
-    n = int(data[index])
-    q = int(data[index + 1])
-    index += 2
+    q = int(data[index])
+    index += 1
 
     comp = []
     query = []
@@ -66,25 +65,19 @@ def main():
         if t == 1:
             l = int(data[index])
             r = int(data[index + 1])
-            l -= 1
-            r -= 1
             index += 2
         comp.extend([L, R])
         query.append((t, L, R, l, r))
     
     comp = sorted(set(comp))
     comp_map = {v: i for i, v in enumerate(comp)}
-    masks = [[0] * n for _ in range(n)]
-    for i in range(n):
-        for j in range(i, n):
-            masks[i][j] = (1 << (j - i + 1)) - 1 << i
     
     uf = WeightedDSU(len(comp))
     for t, L, R, l, r in query:
         L = comp_map[L]
         R = comp_map[R]
         if t == 1:
-            uf.merge(L, R, masks[l][r])
+            uf.merge(L, R, (1 << r) - (1 << (l - 1)))
         else:
             if uf.same(L, R):
                 print(uf.diff(L, R).bit_count())

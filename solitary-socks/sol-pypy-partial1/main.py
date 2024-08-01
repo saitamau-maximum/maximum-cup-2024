@@ -8,9 +8,8 @@ def main():
     input = sys.stdin.read
     data = input().split()
     
-    n = int(data[0])
-    q = int(data[1])
-    index = 2
+    q = int(data[0])
+    index = 1
     
     comp = []
     query = []
@@ -36,13 +35,6 @@ def main():
         R = comp_map[R]
         query[i] = (t, L, R, l, r)
     
-    masks = []
-    for i in range(n + 1):
-        mask = [0] * n
-        for j in range(i):
-            mask[j] = 1
-        masks.append(mask)
-    
     Graph = [[] for _ in range(len(comp))]
     for t, L, R, l, r in query:
         if t == 1:
@@ -50,7 +42,7 @@ def main():
             Graph[R].append((L, l, r))
         else:
             visited = [False] * len(comp)
-            que = deque([(L, [0] * n)])
+            que = deque([(L, [0] * 60)])
             
             arrived = False
             while que:

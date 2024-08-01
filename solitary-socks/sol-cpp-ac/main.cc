@@ -1,17 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int bit_size = 3000;
+using ll = long long;
 struct weighted_dsu {
   public:
   weighted_dsu(): _n(0) {}
-  explicit weighted_dsu(int n): _n(n), parent_or_size(n, -1), diff_weight(n, 0) {}
+  explicit weighted_dsu(ll n): _n(n), parent_or_size(n, -1), diff_weight(n, 0) {}
 
-  int merge(int a, int b, bitset<bit_size> w) {
+  ll merge(ll a, ll b, ll w) {
+    assert(0 <= a && a < _n);
+    assert(0 <= b && b < _n);
+
     w ^= weight(a);
     w ^= weight(b);
 
-    int x = leader(a), y = leader(b);
+    ll x = leader(a), y = leader(b);
     if(x == y) return x;
     if(-parent_or_size[x] < -parent_or_size[y]) swap(x, y);
 
@@ -22,38 +25,41 @@ struct weighted_dsu {
     return x;
   }
 
-  bool same(int a, int b) {
+  bool same(ll a, ll b) {
+    assert(0 <= a && a < _n);
+    assert(0 <= b && b < _n);
     return leader(a) == leader(b);
   }
 
-  int leader(int a) {
+  ll leader(ll a) {
+    assert(0 <= a && a < _n);
     if(parent_or_size[a] < 0) return a;
-    int r = leader(parent_or_size[a]);
+    ll r = leader(parent_or_size[a]);
     diff_weight[a] ^= diff_weight[parent_or_size[a]];
     return parent_or_size[a] = r;
   }
 
-  bitset<bit_size> weight(int x) {
+  ll weight(ll x) {
     leader(x); // 経路圧縮
     return diff_weight[x];
   }
 
-  bitset<bit_size> diff(int x, int y) {
+  ll diff(ll x, ll y) {
     return weight(y) ^ weight(x);
   }
 
   private:
-  int _n;
-  vector<int> parent_or_size;
-  vector<bitset<bit_size>> diff_weight;
+  ll _n;
+  vector<ll> parent_or_size;
+  vector<ll> diff_weight;
 };
 
 int main() {
   cin.tie(nullptr);
   ios_base::sync_with_stdio(false);
 
-  int n, q;
-  cin >> n >> q;
+  int q;
+  cin >> q;
   vector<int> comp;
   vector<tuple<int, int, int, int, int>> query;
   for(int i = 0; i < q; i++) {
@@ -71,19 +77,12 @@ int main() {
     R = lower_bound(comp.begin(), comp.end(), R) - comp.begin();
   }
 
-  vector<bitset<bit_size>> masks;
-  for(int i = 0; i <= bit_size; i++) {
-    bitset<bit_size> mask(0);
-    for(int j = 0; j < i; j++) mask.set(j);
-    masks.emplace_back(mask);
-  }
-
   weighted_dsu uf(comp.size());
   for(auto& [t, L, R, l, r]: query) {
-    if(t == 1) uf.merge(L, R, masks[l - 1] ^ masks[r]);
+    if(t == 1) uf.merge(L, R, (1LL << r) - (1LL << (l-1)));
     else {
       if(!uf.same(L, R)) cout << "Ambiguous\n";
-      else cout << uf.diff(L, R).count() << "\n";
+      else cout << __builtin_popcountll(uf.diff(L, R)) << '\n';
     }
   }
 

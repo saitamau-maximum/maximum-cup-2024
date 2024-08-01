@@ -6,14 +6,13 @@ using namespace std;
 // ファイル名に含まれるかどうか
 #define namecontains(t) (filename.find(t) != string::npos)
 
-using ll           = long long;
-const int bit_size = 3000;
+using ll = long long;
 struct weighted_dsu {
   public:
   weighted_dsu(): _n(0) {}
   explicit weighted_dsu(ll n): _n(n), parent_or_size(n, -1), diff_weight(n, 0) {}
 
-  ll merge(ll a, ll b, bitset<bit_size> w) {
+  ll merge(ll a, ll b, ll w) {
     assert(0 <= a && a < _n);
     assert(0 <= b && b < _n);
 
@@ -45,19 +44,19 @@ struct weighted_dsu {
     return parent_or_size[a] = r;
   }
 
-  bitset<bit_size> weight(ll x) {
+  ll weight(ll x) {
     leader(x); // 経路圧縮
     return diff_weight[x];
   }
 
-  bitset<bit_size> diff(ll x, ll y) {
+  ll diff(ll x, ll y) {
     return weight(y) ^ weight(x);
   }
 
   private:
   ll _n;
   vector<ll> parent_or_size;
-  vector<bitset<bit_size>> diff_weight;
+  vector<ll> diff_weight;
 };
 
 int main(int argc, char* argv[]) {
@@ -66,29 +65,25 @@ int main(int argc, char* argv[]) {
 
   // 問題に応じた最大値や制約を設定
   constexpr long long MaxVal = 1'000'000'000; // 1e9
-  constexpr int MaxN         = 3'000;         // 3000
   constexpr int MaxQ         = 200'000;       // 2e5
   constexpr int PartialQ     = 3000;          // 3000
-
-  int n      = -1;
-  int q      = -1;
-  int lr_num = -1;
+  
+  int q        = -1;
+  int lr_num   = -1;
+  int max_digit = 60;
 
   int maxQ = MaxQ;
   if(namecontains("task1")) maxQ = PartialQ;
 
   if(namecontains("max")) {
-    n      = MaxN;
     q      = maxQ;
     lr_num = rnd.next(10, 2 * q / 2);
   } else if(namecontains("min")) {
-    n      = 1;
     q      = 1;
-    println(n, q);
+    println(q);
     println(2, 3141592, 31415926);
     return 0;
   } else {
-    n      = rnd.next(1, MaxN); // 1 <= n <= 2e5
     q      = rnd.next(1, maxQ); // 1 <= q <= 2e5
     lr_num = rnd.next(10, 2 * q / 2);
   }
@@ -103,33 +98,23 @@ int main(int argc, char* argv[]) {
   }
   sort(lr.begin(), lr.end());
 
-  // 予め bit mask は作成しておく
-  vector<bitset<bit_size>> masks;
-  for(int i = 1; i <= bit_size; i++) {
-    bitset<bit_size> mask;
-    for(int j = 0; j < i; j++) mask.set(j);
-    masks.emplace_back(mask);
-  }
-
   // Handmade case
   if(namecontains("hand00_task1")) {
     // 同じクエリが飛んでくるけど、オンラインクエリ故に答えが異なるケース
-    n      = MaxN;
     q      = 3;
-    println(n, q);
+    println(q);
     println("2 1 1000000000");
-    println("1 1 1000000000 100 1000");
+    println("1 1 1000000000 10 60");
     println("2 1 1000000000");
     return 0;
   } else if(namecontains("hand01_task1") || namecontains("hand03_all")) {
     // 最初に全連結な直線グラフを作成して、その後ランダムにクエリを生成
-    n      = MaxN;
     q      = maxQ;
     lr_num = q / 2;
-    println(n, q);
+    println(q);
     for(int i = 0; i < lr_num - 1; i++) {
-        int l = rnd.next(1, n);
-        int r = rnd.next(l, n);
+        int l = rnd.next(1, max_digit);
+        int r = rnd.next(l, max_digit);
         println("1", lr[i], lr[i + 1], l, r);
         q--;
         if(q <= 0) return 0;
@@ -142,13 +127,12 @@ int main(int argc, char* argv[]) {
     return 0;
   } else if(namecontains("hand02_task1") || namecontains("hand04_all")) {
     // 最初に全連結な直線グラフを作成して、その後の残り全てのクエリを端から端までのクエリにする
-    n      = MaxN;
     q      = maxQ;
     lr_num = q / 2;
-    println(n, q);
+    println(q);
     for(int i = 0; i < lr_num - 1; i++) {
-        int l = rnd.next(1, n);
-        int r = rnd.next(l, n);
+        int l = rnd.next(1, max_digit);
+        int r = rnd.next(l, max_digit);
         println("1", lr[i], lr[i + 1], l, r);
         q--;
         if(q <= 0) return 0;
@@ -157,17 +141,16 @@ int main(int argc, char* argv[]) {
     return 0;
   } else if(namecontains("hand05_all")) {
     // 最初の一つ以外全てクエリ 2
-    n      = MaxN;
     q      = maxQ;
     lr_num = q / 2;
-    println(n, q);
-    println(1, 1, 1000000000, 1, 1000);
+    println(q);
+    println(1, 1, 1000000000, 1, 10);
     q--;
     while(q--) println(2, 1, 1000000000);
     return 0;
   } 
 
-  println(n, q);
+  println(q);
 
   // クエリ生成
   weighted_dsu uf(lr_num);
@@ -177,37 +160,37 @@ int main(int argc, char* argv[]) {
     int L = rnd.next(0, lr_num - 2);
     int R = rnd.next(L + 1, lr_num - 1);
     if(t == 1 && uf.same(L, R)) {
-      bitset<bit_size> diff = uf.diff(L, R);
-      bool flag_01          = (diff[0] == 1);
+      ll diff = uf.diff(L, R);
+      bool flag_01          = (diff & 1) == 1;
       bool flag_10          = false;
       bool ng               = false;
 
-      for(int j = 1; j < bit_size; j++) {
-        if(flag_10 && diff[j] == 1) {
+      for(int j = 1; j < 60; j++) {
+        if(flag_10 && (diff & (1LL << j))) {
           ng = true;
           break;
-        } else if(flag_01 && diff[j] == 0) flag_10 = true;
-        else if(diff[j] == 1) flag_01 = true;
+        } else if(flag_01 && !(diff & (1LL << j))) flag_10 = true;
+        else if(diff & (1LL << j)) flag_01 = true;
       }
       if(ng || !flag_01) t = 2;
     }
 
     if(t == 1) {
-      int l = rnd.next(1, n);
-      int r = rnd.next(l, n);
+      int l = rnd.next(1, max_digit);
+      int r = rnd.next(l, max_digit);
       if(uf.same(L, R)) {
-        bitset<bit_size> diff = uf.diff(L, R);
-        for(int j = 0; j < bit_size; j++) {
-          if(diff[j] == 0) continue;
+        ll diff = uf.diff(L, R);
+        for(int j = 0; j < 60; j++) {
+          if(!(diff & (1LL << j))) continue;
           l = j + 1;
           break;
         }
-        for(int j = bit_size - 1; j >= 0; j--) {
-          if(diff[j] == 0) continue;
+        for(int j = 60 - 1; j >= 0; j--) {
+          if(!(diff & (1LL << j))) continue;
           r = j + 1;
           break;
         }
-      } else uf.merge(L, R, masks[(r - 1) - (l - 1)] << (l - 1));
+      } else uf.merge(L, R, (1LL << r) - (1LL << (l - 1)));
       L = lr[L];
       R = lr[R];
       println(t, L, R, l, r);
