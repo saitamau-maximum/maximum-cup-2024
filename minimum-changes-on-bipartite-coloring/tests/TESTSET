@@ -7,5 +7,5 @@ cxx_judge(
     flags=["-std=c++2a", "-O2"],
 )
 id = "minimum-changes-on-bipartite-coloring"
-subtask_testset(name="Task 1", input_patterns=["*_task1.in"])
-subtask_testset(name="All", input_patterns=["*_all.in"])
+subtask_testset(name="Task 1", score=30, input_patterns=["*_task1.in"])
+subtask_testset(name="All", score=70, input_patterns=["*_all.in"])

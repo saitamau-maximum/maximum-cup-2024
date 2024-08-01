@@ -38,15 +38,19 @@ int main(int argc, char *argv[]) {
     quitWithPoint(0, _wa, "wrong operation count");
   }
 
+  // infile 名は argv[1]
+  // hand00 は n <= 8 だが、これで判定するとスコアが下がってしまう
+  bool isTask1 = (string(argv[1]).find("task1") != string::npos);
+
   if (ans_op == -1) {
     if (ouf.seekEof())
-      quitWithPoint(n <= 8 ? 30 : 70, _ok, "operation count is -1");
+      quitWithPoint(isTask1 ? 30 : 70, _ok, "operation count is -1");
     else
       quitWithPoint(0, _wa, "expected operation count is -1, but found some operations");
   }
 
   // 正しい操作列かチェック
-  const int point = (n <= 8 ? 10 : 25);
+  const int point = (isTask1 ? 10 : 25);
   int op_cnt = 0;
   int cnt0 = 0, cnt1 = 0;
   for (int i = 0; i < n; ++i) (alpha[i] == 0 ? cnt0 : cnt1)++;
@@ -71,5 +75,5 @@ int main(int argc, char *argv[]) {
   if (op_cnt > ans_op) quitWithPoint(point, _partially, "operation count is greater than expected");
   if (op_cnt < ans_op) quitWithPoint(point, _partially, "operation count is less than expected");
 
-  quitWithPoint(n <= 8 ? 30 : 70, _ok, "correct operation count");
+  quitWithPoint(isTask1 ? 30 : 70, _ok, "correct operation count");
 }
