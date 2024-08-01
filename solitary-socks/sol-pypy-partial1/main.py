@@ -1,4 +1,4 @@
-#!/usr/bin/pypy
+#!/usr/bin/env pypy
 
 import sys
 from collections import deque
