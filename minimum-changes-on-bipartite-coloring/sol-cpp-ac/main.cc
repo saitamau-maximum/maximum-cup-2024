@@ -70,7 +70,7 @@ int main() {
 
   auto change1to0 = [&]() {
     assert(v_1to0.size() > 0);
-    int v = v_1to0.front();
+    int v = v_1to0.back();
     v_1to0.pop_back();
     v_0to0.push_back(v);
     ans.push_back({ v, 0 });
