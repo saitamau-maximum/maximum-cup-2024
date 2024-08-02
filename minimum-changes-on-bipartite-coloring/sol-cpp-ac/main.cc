@@ -26,19 +26,19 @@ int main() {
   // 変化しない頂点が 0 かつ 変化する頂点が 1 ずつなら -1
   // そうではないときはハミング距離が答えとなる
   int cnt = 0;
-  queue<int> v_0to0, v_0to1, v_1to0, v_1to1;
+  vector<int> v_0to0, v_0to1, v_1to0, v_1to1;
   rep(i, n) {
     if (alpha[i] == beta[i]) {
       if (alpha[i] == 0)
-        v_0to0.push(i);
+        v_0to0.push_back(i);
       else
-        v_1to1.push(i);
+        v_1to1.push_back(i);
     }
     if (alpha[i] != beta[i]) {
       if (alpha[i] == 0)
-        v_0to1.push(i);
+        v_0to1.push_back(i);
       else
-        v_1to0.push(i);
+        v_1to0.push_back(i);
 
       if (d.size(i) > 1) {
         cout << -1 << endl;
@@ -62,17 +62,17 @@ int main() {
 
   auto change0to1 = [&]() {
     assert(v_0to1.size() > 0);
-    int v = v_0to1.front();
-    v_0to1.pop();
-    v_1to1.push(v);
+    int v = v_0to1.back();
+    v_0to1.pop_back();
+    v_1to1.push_back(v);
     ans.push_back({ v, 1 });
   };
 
   auto change1to0 = [&]() {
     assert(v_1to0.size() > 0);
     int v = v_1to0.front();
-    v_1to0.pop();
-    v_0to0.push(v);
+    v_1to0.pop_back();
+    v_0to0.push_back(v);
     ans.push_back({ v, 0 });
   };
 
@@ -100,7 +100,7 @@ int main() {
     }
   }
 
-  for (auto [v, c] : ans) cout << v + 1 << " " << c << '\n';
+  for (auto [v, c] : ans) cout << v + 1 << " " << c << endl;
 
   return 0;
 }
