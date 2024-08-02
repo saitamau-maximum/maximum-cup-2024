@@ -1,9 +1,0 @@
-# -*- coding: utf-8; mode: python -*-
-
-pid='solitary-socks'
-
-problem(
-  time_limit=2.0,
-  id=pid,
-  title="Solitary Socks",
-)

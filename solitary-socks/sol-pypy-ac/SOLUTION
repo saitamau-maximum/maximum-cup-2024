@@ -1,3 +1,0 @@
-# -*- coding: utf-8; mode: python -*-
-script_solution(src='main.py')
-expected_score(100)
