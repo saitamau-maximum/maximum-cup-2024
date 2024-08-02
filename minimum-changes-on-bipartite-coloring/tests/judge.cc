@@ -3,7 +3,7 @@
 using namespace std;
 
 inline void quitWithPoint(int point, TResult result, string message) {
-  bool is_mofe = false;  // TODO: change here
+  bool is_mofe = true;  // TODO: change here
   if (is_mofe) {
     cout << "MofeJudge::Score(" << point << ")" << endl;
     quit(result, message);
@@ -20,12 +20,11 @@ int main(int argc, char *argv[]) {
   // まず入力を読む
   int n = inf.readInt();
   int m = inf.readInt();
-  vector Graph(n, vector<int>(0));
+  vector<int> deg(n, 0);
   for (int i = 0; i < m; i++) {
     int u = inf.readInt() - 1;
     int v = inf.readInt() - 1;
-    Graph[u].push_back(v);
-    Graph[v].push_back(u);
+    ++deg[u], ++deg[v];
   }
   vector<int> alpha = inf.readInts(n);
   vector<int> beta = inf.readInts(n);
@@ -61,9 +60,11 @@ int main(int argc, char *argv[]) {
 
     --v;
     if (alpha[v] == c) quitWithPoint(point, _partially, "changing to the same color");
-    if (!Graph[v].empty()) quitWithPoint(point, _partially, "changing color of a vertex with neighbors");
+    if (deg[v] != 0) quitWithPoint(point, _partially, "changing color of a vertex with neighbors");
     if (c == 0 && cnt1 == 1) quitWithPoint(point, _partially, "color 1 will be empty");
     if (c == 1 && cnt0 == 1) quitWithPoint(point, _partially, "color 0 will be empty");
+
+    alpha[v] = c;
     if (c == 0)
       cnt0++, cnt1--;
     else
