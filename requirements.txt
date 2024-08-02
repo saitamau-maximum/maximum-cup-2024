@@ -1,5 +1,4 @@
 rime~=2.1.0
-git+https://github.com/not522/ac-library-python
 numpy
 scipy
 networkx
