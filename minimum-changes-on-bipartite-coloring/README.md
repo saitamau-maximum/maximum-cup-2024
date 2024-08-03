@@ -26,7 +26,7 @@ Asa さんは、 $\alpha$ に対して以下の操作を繰り返すことで、
 ## 制約
 
 - $2 \le n \le 2 \times 10^5$
-- $0 \le m \le \min\left( \dfrac{n (n - 1)}{2}, 2 \times 10^5 \right)$
+- $0 \le m \le \min\left( \dfrac{n^2}{4}, 2 \times 10^5 \right)$
 - $1 \le u_i < v_i \le n$
 - $\alpha(v), \beta(v) \in \\{ 0, 1 \\}$
 - 与えられるグラフは二部グラフである

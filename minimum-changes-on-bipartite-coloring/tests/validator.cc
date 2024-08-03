@@ -9,10 +9,8 @@ int main(int argc, char* argv[]) {
 
   inf.readSpace();
 
-  long long m_max_tmp = (long long) n * (n - 1) / 2;
-  if (m_max_tmp >= 200'000) m_max_tmp = 200'000;
-  int m_max = (int) m_max_tmp;
-  int m = inf.readInt(0, m_max, "m");  // 0 <= m <= 2e5
+  long long m_max = (long long) n * n / 4;
+  int m = inf.readInt(0, (int) (m_max, 200'000LL), "m");  // 0 <= m <= 2e5
 
   inf.readEoln();
 
