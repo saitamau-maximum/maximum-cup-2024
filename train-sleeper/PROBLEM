@@ -2,6 +2,6 @@
 
 problem(
   time_limit=2.0,
-  id="train-sleeper",
+  id="e",
   title="Train Sleeper",
 )

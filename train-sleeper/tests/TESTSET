@@ -6,7 +6,6 @@ cxx_judge(
     variant=testlib_judge_runner,
     flags=["-std=c++2a", "-O2"],
 )
-id = "train-sleeper"
 subtask_testset(name="Task 1", score=15, input_patterns=["*_task1.in"])
-subtask_testset(name="Task 1", score=30, input_patterns=["*_task2.in"])
+subtask_testset(name="Task 2", score=30, input_patterns=["*_task2.in"])
 subtask_testset(name="All", score=55, input_patterns=["*_all.in"])
