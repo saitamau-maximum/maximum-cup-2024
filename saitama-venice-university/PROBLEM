@@ -1,6 +1,6 @@
 # -*- coding: utf-8; mode: python -*-
 
-pid='saitama-venice-university'
+pid='a'
 
 problem(
   time_limit=2.0,
