@@ -1,9 +1,7 @@
 # -*- coding: utf-8; mode: python -*-
 
-pid='three-coins'
-
 problem(
   time_limit=2.0,
-  id=pid,
+  id='b',
   title="Three Coins",
 )
