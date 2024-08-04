@@ -1,0 +1,13 @@
+# -*- coding: utf-8; mode: python -*-
+cxx_validator(
+    src="validator.cc", dependency=["testlib.h", "dsu.hpp"], flags=["-std=c++2a", "-O2"]
+)
+cxx_judge(
+    src="judge.cc",
+    dependency=["testlib.h"],
+    variant=testlib_judge_runner,
+    flags=["-std=c++2a", "-O2"],
+)
+subtask_testset(name="Task 1", score=10, input_patterns=["*_task1.in"])
+subtask_testset(name="Task 2", score=20, input_patterns=["*_task2.in"])
+subtask_testset(name="All", score=70, input_patterns=["*_all.in"])

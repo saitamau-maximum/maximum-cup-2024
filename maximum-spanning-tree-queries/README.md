@@ -22,6 +22,7 @@ $j (1 \le j \le Q)$ 番目のクエリでは、重み $w_j$ の辺 $e_j = \\{ x_
 - $G$ は連結
 - $1 \le c_i, w_j \le 10^9$
 - $1 \le u_i, v_i, x_j, y_j \le N$
+- $u_i \ne v_i, x_j \ne y_j$
 - 入力はすべて整数である
 
 ### 部分点
