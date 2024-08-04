@@ -2,6 +2,6 @@
 
 problem(
   time_limit=2.0,
-  id="minimum-changes-on-bipartite-coloring",
+  id="c",
   title="Minimum Changes on Bipartite Coloring",
 )
