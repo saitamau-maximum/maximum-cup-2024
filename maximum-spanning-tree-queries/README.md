@@ -1,6 +1,6 @@
 # Maximum Spanning Tree Queries
 
-実行時間制限: 3 sec
+実行時間制限: 5 sec
 
 ## 問題文
 
