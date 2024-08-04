@@ -19,6 +19,10 @@ int main(int argc, char* argv[]) {
     else if (namecontains("min")) {
       n = 2, m = 1, q = 1;
     }
+    else if (namecontains("hand01") || namecontains("hand02")) {
+      n = 100, q = 99;
+      m = rnd.next(n - 1, 100);
+    }
     else {
       n = rnd.next(2, 100);
       m = rnd.next(n - 1, 100);
@@ -29,6 +33,10 @@ int main(int argc, char* argv[]) {
     if (namecontains("max")) {
       n = 100, m = 200'000, q = 1000;
     }
+    else if (namecontains("hand01") || namecontains("hand02")) {
+      n = 100, q = 99;
+      m = rnd.next(n - 1, 200'000);
+    }
     else {
       n = rnd.next(2, 100);
       m = rnd.next(n - 1, 200'000);
@@ -38,6 +46,10 @@ int main(int argc, char* argv[]) {
   else if (namecontains("all")) {
     if (namecontains("max")) {
       n = 200'000, m = 200'000, q = 200'000;
+    }
+    else if (namecontains("hand01") || namecontains("hand02")) {
+      n = 200'000, q = 199'999;
+      m = rnd.next(n - 1, 200'000);
     }
     else {
       n = rnd.next(2, 200'000);
@@ -91,6 +103,12 @@ int main(int argc, char* argv[]) {
       auto [u, v, c] = edges[0];
       ensure(c + _ + 1 <= 1'000'000'000);
       println(u + 1, v + 1, c + _ + 1);
+    }
+    else if (namecontains("hand01")) {
+      println(1, _ + 2, 1'000'000'000);
+    }
+    else if (namecontains("hand02")) {
+      println(1, _ + 2, 1);
     }
     else {
       // 重めな辺を選ぶ
