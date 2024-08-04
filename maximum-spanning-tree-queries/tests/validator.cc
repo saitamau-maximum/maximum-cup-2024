@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     inf.readSpace();
     int c = inf.readInt(1, 1'000'000'000, "c");
     inf.readEoln();
-    ensuref(a != b, "a and b must be different");
+    ensuref(a != b, "u and v must be different");
     d.merge(a - 1, b - 1);
   }
   ensuref(d.groups().size() == 1, "graph must be connected");
@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
     inf.readSpace();
     int c = inf.readInt(1, 1'000'000'000, "w");
     inf.readEoln();
-    ensuref(a != b, "a and b must be different");
+    ensuref(a != b, "x and y must be different");
   }
   inf.readEof();
 }

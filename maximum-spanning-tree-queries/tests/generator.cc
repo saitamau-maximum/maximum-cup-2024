@@ -52,16 +52,15 @@ int main(int argc, char* argv[]) {
 
   vector<int> par(n);
   for (int i = 1; i < n; ++i) par[i] = rnd.next(0, i - 1);
-  vector<int> perm = rnd.perm(n);
 
   vector<tuple<int, int, int>> edges(m);
   int maximWeight = 0;
   for (int i = 1; i <= m; ++i) {
     if (i <= n - 1) {
       if (rnd.next(0, 1))
-        edges[i - 1] = { perm[i], par[perm[i]], rnd.next(1, 1'000'000'000) };
+        edges[i - 1] = { i, par[i], rnd.next(1, 1'000'000'000) };
       else
-        edges[i - 1] = { par[perm[i]], perm[i], rnd.next(1, 1'000'000'000) };
+        edges[i - 1] = { par[i], i, rnd.next(1, 1'000'000'000) };
     }
     else {
       int u = rnd.next(0, n - 1);
@@ -73,21 +72,22 @@ int main(int argc, char* argv[]) {
   }
   shuffle(edges.begin(), edges.end());
   if (namecontains("hand00") || namecontains("max00")) get<2>(edges[0]) = 1'000'000'000 - q;
+  vector<int> perm = rnd.perm(n);
 
   println(n, m);
-  for (auto [u, v, c] : edges) println(u + 1, v + 1, c);
+  for (auto [u, v, c] : edges) println(perm[u] + 1, perm[v] + 1, c);
 
   println(q);
   for (int _ = 0; _ < q; ++_) {
-    // random00 は完全ランダム
-    if (namecontains("random00")) {
+    // random00, max00 は完全ランダム
+    if (namecontains("random00") || namecontains("max00")) {
       int u = rnd.next(1, n);
       int v = rnd.next(1, n);
       while (u == v) v = rnd.next(1, n);
       println(u, v, rnd.next(1, 1'000'000'000));
     }
-    // 多重辺となるようにどんどん増やしていく
-    else if (namecontains("hand00") || namecontains("max00")) {
+    // どんどん重みを増やしていく
+    else if (namecontains("hand00") || namecontains("max01")) {
       auto [u, v, c] = edges[0];
       ensure(c + _ + 1 <= 1'000'000'000);
       println(u + 1, v + 1, c + _ + 1);
