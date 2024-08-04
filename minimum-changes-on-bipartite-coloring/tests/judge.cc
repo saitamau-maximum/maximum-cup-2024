@@ -3,7 +3,7 @@
 using namespace std;
 
 inline void quitWithPoint(int point, TResult result, string message, bool noOutput) {
-  bool is_mofe = false;  // TODO: change here
+  bool is_mofe = true;  // TODO: change here
   if (is_mofe) {
     if (!noOutput) cout << "MofeJudge::Score(" << point << ")" << endl;
     quit(result, message);
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     if (ouf.seekEof())
       quitWithPoint(isTask1 ? 30 : 70, _ok, "operation count is -1", noOutput);
     else
-      quitWithPoint(0, _wa, "expected operation count is -1, but found some operations", noOutput);
+      quitWithPoint(0, _wa, "expected operation count is -1, but found some operations", false);
   }
 
   // 正しい操作列かチェック
