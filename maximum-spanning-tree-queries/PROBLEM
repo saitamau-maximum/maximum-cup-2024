@@ -1,0 +1,7 @@
+# -*- coding: utf-8; mode: python -*-
+
+problem(
+  time_limit=5.0,
+  id="f",
+  title="Maximum Spanning Tree Queries",
+)
