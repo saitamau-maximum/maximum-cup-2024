@@ -21,7 +21,7 @@ Asa さんが得られる利益の最大値を求めてください。
 
 ## 制約
 
-- $1 \le N \le 2 \times 10^5$
+- $2 \le N \le 2 \times 10^5$
 - $1 \le M \le \min(N (N-1), 2 \times 10^5)$
 - $1 \le u_j, v_j \le N$
 - $u_j \ne v_j$
