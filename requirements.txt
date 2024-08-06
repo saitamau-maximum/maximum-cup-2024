@@ -1,3 +1,7 @@
 rime~=2.1.0
+numpy
+scipy
 networkx
-git+https://github.com/not522/ac-library-python
+sympy
+sortedcontainers
+bitarray
