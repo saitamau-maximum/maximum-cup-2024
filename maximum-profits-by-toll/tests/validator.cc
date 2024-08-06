@@ -10,6 +10,7 @@ int main(int argc, char* argv[]) {
   inf.readEoln();
 
   vector<int> c = inf.readInts(n, 0, 100'000, "c");
+  set<pair<int, int>> edges;
   inf.readEoln();
   for (int i = 0; i < m; ++i) {
     int u = inf.readInt(1, n, "u");
@@ -19,6 +20,8 @@ int main(int argc, char* argv[]) {
     int h = inf.readInt(1, 100'000, "h");
     inf.readEoln();
     ensuref(u != v, "u and v must be different");
+    edges.insert({ u, v });
   }
   inf.readEof();
+  ensuref(edges.size() == m, "edges must be distinct");
 }
