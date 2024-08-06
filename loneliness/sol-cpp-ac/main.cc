@@ -1,0 +1,90 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+struct weighted_dsu {
+  public:
+  weighted_dsu(): _n(0) {}
+  explicit weighted_dsu(ll n): _n(n), parent_or_size(n, -1), diff_weight(n, 0) {}
+
+  ll merge(ll a, ll b, ll w) {
+    assert(0 <= a && a < _n);
+    assert(0 <= b && b < _n);
+
+    w ^= weight(a);
+    w ^= weight(b);
+
+    ll x = leader(a), y = leader(b);
+    if(x == y) return x;
+    if(-parent_or_size[x] < -parent_or_size[y]) swap(x, y);
+
+    parent_or_size[x] += parent_or_size[y];
+    parent_or_size[y] = x;
+    diff_weight[y]    = w;
+
+    return x;
+  }
+
+  bool same(ll a, ll b) {
+    assert(0 <= a && a < _n);
+    assert(0 <= b && b < _n);
+    return leader(a) == leader(b);
+  }
+
+  ll leader(ll a) {
+    assert(0 <= a && a < _n);
+    if(parent_or_size[a] < 0) return a;
+    ll r = leader(parent_or_size[a]);
+    diff_weight[a] ^= diff_weight[parent_or_size[a]];
+    return parent_or_size[a] = r;
+  }
+
+  ll weight(ll x) {
+    leader(x); // 経路圧縮
+    return diff_weight[x];
+  }
+
+  ll diff(ll x, ll y) {
+    return weight(y) ^ weight(x);
+  }
+
+  private:
+  ll _n;
+  vector<ll> parent_or_size;
+  vector<ll> diff_weight;
+};
+
+int main() {
+  cin.tie(nullptr);
+  ios_base::sync_with_stdio(false);
+
+  int q;
+  cin >> q;
+  vector<int> comp;
+  vector<tuple<int, int, int, int, int>> query;
+  for(int i = 0; i < q; i++) {
+    int t, L, R, l = -1, r = -1;
+    cin >> t >> L >> R;
+    comp.emplace_back(L);
+    comp.emplace_back(R);
+    if(t == 1) cin >> l >> r;
+    query.emplace_back(tuple(t, L, R, l, r));
+  }
+  sort(comp.begin(), comp.end());
+  comp.erase(unique(comp.begin(), comp.end()), comp.end());
+  for(auto& [t, L, R, l, r]: query) {
+    L = lower_bound(comp.begin(), comp.end(), L) - comp.begin();
+    R = lower_bound(comp.begin(), comp.end(), R) - comp.begin();
+  }
+
+  weighted_dsu uf(comp.size());
+  for(auto& [t, L, R, l, r]: query) {
+    if(t == 1) uf.merge(L, R, (1LL << r) - (1LL << (l - 1)));
+    else {
+      if(!uf.same(L, R)) cout << "Ambiguous\n";
+      else cout << __builtin_popcountll(uf.diff(L, R)) << '\n';
+    }
+  }
+
+  return 0;
+}
