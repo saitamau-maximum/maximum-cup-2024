@@ -1,1 +1,7 @@
 rime~=2.1.0
+numpy
+scipy
+networkx
+sympy
+sortedcontainers
+bitarray
