@@ -50,7 +50,7 @@ done
 
 # Compile the solution
 echo "Compiling solution..."
-g++ -std=c++2a -O2 -o main main.cc
+g++ -std=c++2a -O2 -I../_common -o main main.cc
 
 # Run the solution
 echo "Running solution..."
