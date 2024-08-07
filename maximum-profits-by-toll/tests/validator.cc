@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
   int m = inf.readInt(1, (int) min(200'000LL, (long long) n * (n - 1)), "m");
   inf.readEoln();
 
-  vector<int> c = inf.readInts(n, 0, 100'000, "c");
+  vector<int> c = inf.readInts(n, 0, 10'000, "c");
   set<pair<int, int>> edges;
   inf.readEoln();
   for (int i = 0; i < m; ++i) {
@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
     inf.readSpace();
     int v = inf.readInt(1, n, "v");
     inf.readSpace();
-    int h = inf.readInt(1, 100'000, "h");
+    int h = inf.readInt(1, 10'000, "t");
     inf.readEoln();
     ensuref(u != v, "u and v must be different");
     edges.insert({ u, v });

@@ -12,11 +12,11 @@ int main() {
   vector Graph(n, vector<pair<int, int>>(0));
   vector revGraph(n, vector<pair<int, int>>(0));
   rep(i, m) {
-    int u, v, h;
-    cin >> u >> v >> h;
+    int u, v, t;
+    cin >> u >> v >> t;
     Graph[u - 1].push_back({ v - 1, i });
     revGraph[v - 1].push_back({ u - 1, i });
-    edges[i] = { u - 1, v - 1, h };
+    edges[i] = { u - 1, v - 1, t };
   }
 
   vector<int> topological(0);

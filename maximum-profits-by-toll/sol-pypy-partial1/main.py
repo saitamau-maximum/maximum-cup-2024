@@ -10,8 +10,8 @@ def main():
     G = nx.DiGraph()
     G.add_nodes_from(range(n))
     for _ in range(m):
-        u, v, h = map(int, stdin.readline().split())
-        G.add_edge(u - 1, v - 1, weight=h)
+        u, v, t = map(int, stdin.readline().split())
+        G.add_edge(u - 1, v - 1, weight=t)
 
     print(0 if nx.is_directed_acyclic_graph(G) else -1)
 

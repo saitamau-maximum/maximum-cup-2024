@@ -11,10 +11,10 @@ int main() {
   vector Graph(n, vector<pair<int, int>>(0));
   vector revGraph(n, vector<pair<int, int>>(0));
   rep(i, m) {
-    int u, v, h;
-    cin >> u >> v >> h;
-    Graph[u - 1].push_back({ v - 1, h });
-    revGraph[v - 1].push_back({ u - 1, h });
+    int u, v, t;
+    cin >> u >> v >> t;
+    Graph[u - 1].push_back({ v - 1, t });
+    revGraph[v - 1].push_back({ u - 1, t });
   }
 
   vector<int> topological(0);
@@ -40,7 +40,7 @@ int main() {
   vector<ll> ans(n, 0);
   for (int i = 0; i < n; ++i) {
     int v = topological[i];
-    for (auto [u, h] : revGraph[v]) ans[v] = max(ans[v], ans[u] + h);
+    for (auto [u, t] : revGraph[v]) ans[v] = max(ans[v], ans[u] + t);
   }
 
   ll ansval = 0;

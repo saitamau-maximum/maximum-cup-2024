@@ -10,9 +10,9 @@ int main() {
   rep(i, n) cin >> c[i];
   vector Graph(n, vector<pair<int, int>>(0));
   rep(_, m) {
-    int u, v, h;
-    cin >> u >> v >> h;
-    Graph[u - 1].push_back({ v - 1, h });
+    int u, v, t;
+    cin >> u >> v >> t;
+    Graph[u - 1].push_back({ v - 1, t });
   }
 
   vector<int> indeg(n, 0);

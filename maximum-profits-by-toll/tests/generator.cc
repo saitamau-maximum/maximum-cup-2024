@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char* argv[]) {
   registerGen(argc, argv, 1);
   constexpr int MaxN = 200'000;
-  constexpr int MaxH = 10000;
+  constexpr int MaxT = 10000;
   constexpr int MaxC = 10000;
   const string filename = argv[1];
 
@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
     println(c);
     vector<int> perm = rnd.perm(n);
     for (int v = 2; v <= n; ++v) {
-      println(perm[(v / 2) - 1] + 1, perm[v - 1] + 1, MaxH);
+      println(perm[(v / 2) - 1] + 1, perm[v - 1] + 1, MaxT);
     }
     return 0;
   }
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
     println(c);
     vector<int> perm = rnd.perm(n);
     for (int i = 0; i < n - 1; ++i) {
-      println(perm[i] + 1, perm[i + 1] + 1, MaxH);
+      println(perm[i] + 1, perm[i + 1] + 1, MaxT);
     }
     return 0;
   }
@@ -110,7 +110,7 @@ int main(int argc, char* argv[]) {
     for (int i = 1; i < n; ++i) par[i] = rnd.next(0, i - 1);
     vector<int> perm = rnd.perm(n);
     for (int i = 1; i < n; ++i) {
-      println(perm[par[i]] + 1, perm[i] + 1, rnd.next(1, MaxH));
+      println(perm[par[i]] + 1, perm[i] + 1, rnd.next(1, MaxT));
     }
   }
   else {
@@ -172,9 +172,9 @@ int main(int argc, char* argv[]) {
     vector<pair<int, int>> edg(edges.begin(), edges.end());
     shuffle(edg.begin(), edg.end());
     for (int i = 0; i < edg.size(); ++i) {
-      int h = rnd.next(1, MaxH);
-      if (namecontains("max")) h = MaxH;
-      println(edg[i].first, edg[i].second, h);
+      int t = rnd.next(1, MaxT);
+      if (namecontains("max")) t = MaxT;
+      println(edg[i].first, edg[i].second, t);
     }
   }
 
