@@ -1,7 +1,7 @@
 # -*- coding: utf-8; mode: python -*-
 
 problem(
-  time_limit=2.0,
+  time_limit=5.0,
   id="i",
   title="Maximum Profits by Toll",
 )

@@ -1,6 +1,6 @@
 # Maximum Profits by Toll
 
-実行時間制限: 2 sec
+実行時間制限: 5 sec
 
 ## 問題文
 
