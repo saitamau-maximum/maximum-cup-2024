@@ -24,6 +24,7 @@ int main(int argc, char* argv[]) {
     int m = n - 1;
     println(n, m);
     vector<int> c(n, MaxC);
+    if (namecontains("task1")) c.assign(n, 0);
     println(c);
     vector<int> perm = rnd.perm(n);
     for (int v = 2; v <= n; ++v) {
@@ -37,6 +38,7 @@ int main(int argc, char* argv[]) {
     int m = n - 1;
     println(n, m);
     vector<int> c(n, MaxC);
+    if (namecontains("task1")) c.assign(n, 0);
     println(c);
     vector<int> perm = rnd.perm(n);
     for (int i = 0; i < n - 1; ++i) {
