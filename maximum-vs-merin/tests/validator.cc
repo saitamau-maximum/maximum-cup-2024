@@ -12,10 +12,10 @@ int main(int argc, char* argv[]) {
   
   for (int i = 0; i < n; ++i) {
     // 0 <= h[i] <= 1e9
-    long long h = inf.readLong(0LL, 1'000'000'000, format("h[%d]", i));  
+    long long h = inf.readLong(1LL, 1'000'000'000, format("h[%d]", i));  
     inf.readSpace();                                                     
     // 0 <= c[i] <= 1e9
-    long long c = inf.readLong(0LL, 1'000'000'000, format("c[%d]", i));  
+    long long c = inf.readLong(1LL, 1'000'000'000, format("c[%d]", i));  
     inf.readEoln();  // 各行の終わりに改行
   }
   

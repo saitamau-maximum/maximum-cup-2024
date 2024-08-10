@@ -272,8 +272,8 @@ int main(int argc, char* argv[]) {
 
     vector<pair<long long, long long>> slimes(n);
     for (int i = 0; i < n; ++i) {
-        slimes[i].first = rnd.next(0LL, maxH);
-        slimes[i].second = rnd.next(0LL, maxC);
+        slimes[i].first = rnd.next(1LL, maxH);
+        slimes[i].second = rnd.next(1LL, maxC);
     }
 
     // 出力
