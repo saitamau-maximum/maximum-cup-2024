@@ -88,7 +88,7 @@ $$
 
 よって、 $k = 0$ の場合成立する。
 
-### (ⅱ) $k = 0, 1, \cdots , n$ で命題が成立すると仮定する。 $k = n + 1$ の場合
+### (ⅱ) $k = 0, 1, \cdots , n$ で命題が成立すると仮定した際の $k = n + 1$ の場合
 
 - $g(4k + 1)$
 
@@ -299,9 +299,9 @@ $$
 
 したがって、 $t = 1$ の場合に命題が成立する。
 
-#### (Ⅱ) $t = n$ の場合に命題が成立すると仮定する。 $t = n + 1$ の場合に命題が成立することを示す。
+#### (Ⅱ) $t = 1, 2, \cdots , n$ で命題が成立すると仮定する。 $t = n + 1$ の場合
 
-- $s = 0$ の場合
+##### $s = 0$ の場合
 
 - $g(X(n + 1) + 1) = 1$
 
@@ -325,12 +325,12 @@ $$
 
       - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y, z, w (z + w = n)$ は非負整数)
 
-        - $g(1) \oplus g(D + 2) = 1 \oplus (D + 1) \equiv 2 \pmod 4$
-        - $g(2) \oplus g(D + 1) = 2 \oplus 0 = 2$
-        - $g(4x + 3) \oplus g(4y + 2) = (4x + 4) \oplus (4y + 2) \equiv 2 \pmod 4$
-        - $g(4x + 4) \oplus g(4y + 1) = (4x + 3) \oplus (4y + 1) \equiv 2 \pmod 4$
-        - $g(4x + 1) \oplus g(4y + 4) = (4x + 1) \oplus (4y + 3) \equiv 2 \pmod 4$
-        - $g(4x + 2) \oplus g(4y + 3) = (4x + 2) \oplus (4y + 4) \equiv 2 \pmod 4$
+        - $g(Xz + 1) \oplus g(Xw + D + 2) = 1 \oplus (D + 1) \equiv 2 \pmod 4$
+        - $g(Xz + 2) \oplus g(Xw + D + 1) = 2 \oplus 0 = 2$
+        - $g(Xz + 4x + 3) \oplus g(Xw + 4y + 2) = (4x + 4) \oplus (4y + 2) \equiv 2 \pmod 4$
+        - $g(Xz + 4x + 4) \oplus g(Xw + 4y + 1) = (4x + 3) \oplus (4y + 1) \equiv 2 \pmod 4$
+        - $g(Xz + 4x + 1) \oplus g(Xw + 4y + 4) = (4x + 1) \oplus (4y + 3) \equiv 2 \pmod 4$
+        - $g(Xz + 4x + 2) \oplus g(Xw + 4y + 3) = (4x + 2) \oplus (4y + 4) \equiv 2 \pmod 4$
 
       - $0$ には到達できるが、 $1$ には到達できない
 
@@ -437,16 +437,18 @@ $$
 
 したがって、 $s = 0$ の場合に命題が成立する。
 
-ここで $s = n$ で命題が成立すると仮定する。 $s = n + 1$ の場合を考える。
+##### $s = n$ で命題が成立すると仮定した際の $s = n + 1$ の場合
 
-- 仮定より、下記が言える。
+- まず、下記のように表現ができる。
 
-  - $g(Xt + 1 + 4(n + 1) + 1) = g(Xt + 1 + 4n + 1) + 4$
-  - $g(Xt + 1 + 4(n + 1) + 2) = g(Xt + 1 + 4n + 2) + 4$
-  - $g(Xt + 1 + 4(n + 1) + 3) = g(Xt + 1 + 4n + 3) + 4$
-  - $g(Xt + 1 + 4(n + 1) + 4) = g(Xt + 1 + 4n + 4) + 4$
+  - $g(Xt + 1 + 4(n + 1) + 1) = g(Xt + 1 + 4n + 1 + 4)$
+  - $g(Xt + 1 + 4(n + 1) + 2) = g(Xt + 1 + 4n + 2 + 4)$
+  - $g(Xt + 1 + 4(n + 1) + 3) = g(Xt + 1 + 4n + 3 + 4)$
+  - $g(Xt + 1 + 4(n + 1) + 4) = g(Xt + 1 + 4n + 4 + 4)$
 
-したがって、 $s = n + 1$ も $s = n$ と同様に議論できることから、命題が成立する。
+- これは $s = n$ に $4$ 項を追加したことを意味するが、 $4$ 項を追加しても分裂遷移にありうるパターンは $s = n$ と変わらない。
+
+したがって、 $s = n + 1$ も $s = n$ と同様の議論を展開できることから、命題が成立する。
 
 - $g(X(n + 1) + D + 1) = 0$
 
@@ -544,156 +546,147 @@ $$
 - $g(X + 1) = 0$ は 2. で証明済み。
 - $g(X + 1 + 4s + 1)=4s + 2$, $g(X + 1 + 4s + 2)=4s + 1$, $g(X + 1 + 4s + 3)=4s + 3$, $g(X + 1 + 4s + 4)=4s + 4$ は 1 (ⅱ) のように $s$ に関する帰納法で証明する。
 
-- $s = 0$ の場合
+##### $s = 0$ の場合
 
-  - $g(X + 1 + 1) = g(D + 3)$
+- $g(X + 1 + 1) = g(D + 3)$
 
-    - 攻撃遷移で到達可能な状態は $\lbrace 4, 3, 5, 6 \cdots , D - 1, 0 \rbrace$ であり、 $2$ に到達不可能。
-    - 分裂遷移で到達可能かを下記の 2 パターンで議論する。
+  - 攻撃遷移で到達可能な状態は $\lbrace 4, 3, 5, 6 \cdots , D - 1, 0 \rbrace$ であり、 $2$ に到達不可能。
+  - $g(1) \oplus g(D + 2) = 1 \oplus 0 = 1$ より、分裂遷移で $1$ に到達可能。
+  - 分裂遷移で到達可能かを下記の 2 パターンで議論する。
 
-      - $D \equiv 1 \pmod 4$
+    - $D \equiv 1 \pmod 4$
 
-        - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y$ は非負整数)
+      - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y, z$ は非負整数)
 
-          - $g(1) \oplus g(D + 1) = 1 \oplus 0 = 1$
-          - $g(4x + 2) \oplus g(4y + 2) = (4x + 2) \oplus (4y + 2) \equiv 0 \pmod 4$
-          - $g(4x + 3) \oplus g(4y + 1) = (4x + 4) \oplus (4y + 1) \equiv 1 \pmod 4$
-          - $g(4x + 4) \oplus g(4y + 4) = (4x + 3) \oplus (4y + 3) \equiv 0 \pmod 4$
-          - $g(4x + 1) \oplus g(4y + 3) = (4x + 1) \oplus (4y + 4) \equiv 1 \pmod 4$
+        - $g(4x + 1) \oplus g(Xz + 1) = 1 \oplus 0 \equiv 1 \pmod 4$
+        - $g(4x + 2) \oplus g(4y + 2) = (4x + 2) \oplus (4y + 2) \equiv 0 \pmod 4$
+        - $g(4x + 3) \oplus g(4y + 1) = (4x + 4) \oplus (4y + 1) \equiv 1 \pmod 4$
+        - $g(4x + 4) \oplus g(4y + 4) = (4x + 3) \oplus (4y + 3) \equiv 0 \pmod 4$
+        - $g(4x + 1) \oplus g(4y + 3) = (4x + 1) \oplus (4y + 4) \equiv 1 \pmod 4$
 
-        - $0, 1$ には到達できるが、 $2$ には到達できない
+      - $0, 1$ には到達できるが、 $2$ には到達できない
 
-      - $D \equiv 3 \pmod 4$
+    - $D \equiv 3 \pmod 4$
 
-        - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y$ は非負整数)
+      - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y, z$ は非負整数)
 
-          - $g(1) \oplus g(D + 1) = 1 \oplus 0 = 1$
-          - $g(4x + 2) \oplus g(4y + 4) = (4x + 2) \oplus (4y + 3) \equiv 1 \pmod 4$
-          - $g(4x + 3) \oplus g(4y + 3) = (4x + 4) \oplus (4y + 4) \equiv 0 \pmod 4$
-          - $g(4x + 4) \oplus g(4y + 2) = (4x + 3) \oplus (4y + 2) \equiv 1 \pmod 4$
-          - $g(4x + 1) \oplus g(4y + 1) = (4x + 1) \oplus (4y + 1) \equiv 0 \pmod 4$
+        - $g(4x + 1) \oplus g(Xz + 1) = 1 \oplus 0 \equiv 1 \pmod 4$
+        - $g(4x + 2) \oplus g(4y + 4) = (4x + 2) \oplus (4y + 3) \equiv 1 \pmod 4$
+        - $g(4x + 3) \oplus g(4y + 3) = (4x + 4) \oplus (4y + 4) \equiv 0 \pmod 4$
+        - $g(4x + 4) \oplus g(4y + 2) = (4x + 3) \oplus (4y + 2) \equiv 1 \pmod 4$
+        - $g(4x + 1) \oplus g(4y + 1) = (4x + 1) \oplus (4y + 1) \equiv 0 \pmod 4$
 
-        - $0, 1$ には到達できるが、 $2$ には到達できない
+      - $0, 1$ には到達できるが、 $2$ には到達できない
 
-    - よって、 $g(X + 1 + 1) = 2$ が成立する。
+  - よって、 $g(X + 1 + 1) = 2$ が成立する。
 
-  - $g(X + 1 + 2) = g(D + 4)$
+- $g(X + 1 + 2) = g(D + 4)$
 
-    - 攻撃遷移で到達可能な状態は $\lbrace 3, 5, 6 \cdots , D - 1, 0, 2 \rbrace$ であり、 $1$ に到達不可能。
-    - 分裂遷移で到達可能かを下記の 2 パターンで議論する。
+  - 攻撃遷移で到達可能な状態は $\lbrace 3, 5, 6 \cdots , D - 1, 0, 2 \rbrace$ であり、 $1$ に到達不可能。
+  - 分裂遷移で到達可能かを下記の 2 パターンで議論する。
 
-      - $D \equiv 1 \pmod 4$
+    - $D \equiv 1 \pmod 4$
 
-        - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y$ は非負整数)
+      - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y, z$ は非負整数)
 
-          - $g(1) \oplus g(D + 2) = 1 \oplus 2 = 3$
-          - $g(2) \oplus g(D + 1) = 2 \oplus 0 = 2$
-          - $g(4x + 3) \oplus g(4y + 2) = (4x + 4) \oplus (4y + 2) \equiv 2 \pmod 4$
-          - $g(4x + 4) \oplus g(4y + 1) = (4x + 3) \oplus (4y + 1) \equiv 2 \pmod 4$
-          - $g(4x + 1) \oplus g(4y + 4) = (4x + 1) \oplus (4y + 3) \equiv 2 \pmod 4$
-          - $g(4x + 2) \oplus g(4y + 3) = (4x + 2) \oplus (4y + 4) \equiv 2 \pmod 4$
+        - $g(4x + 2) \oplus g(Xz + 1) = 2 \oplus 0 \equiv 2 \pmod 4$
+        - $g(4x + 3) \oplus g(4y + 2) = (4x + 4) \oplus (4y + 2) \equiv 2 \pmod 4$
+        - $g(4x + 4) \oplus g(4y + 1) = (4x + 3) \oplus (4y + 1) \equiv 2 \pmod 4$
+        - $g(4x + 1) \oplus g(4y + 4) = (4x + 1) \oplus (4y + 3) \equiv 2 \pmod 4$
+        - $g(4x + 2) \oplus g(4y + 3) = (4x + 2) \oplus (4y + 4) \equiv 2 \pmod 4$
 
-        - $0$ には到達できるが、 $1$ には到達できない
+      - $0$ には到達できるが、 $1$ には到達できない
 
-      - $D \equiv 3 \pmod 4$
+    - $D \equiv 3 \pmod 4$
 
-        - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y$ は非負整数)
+      - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y, z$ は非負整数)
 
-          - $g(1) \oplus g(D + 2) = 1 \oplus 2 = 3$
-          - $g(2) \oplus g(D + 1) = 2 \oplus 0 = 2$
-          - $g(4x + 3) \oplus g(4y + 4) = (4x + 4) \oplus (4y + 3) \equiv 3 \pmod 4$
-          - $g(4x + 4) \oplus g(4y + 3) = (4x + 3) \oplus (4y + 4) \equiv 3 \pmod 4$
-          - $g(4x + 1) \oplus g(4y + 2) = (4x + 1) \oplus (4y + 2) \equiv 3 \pmod 4$
-          - $g(4x + 2) \oplus g(4y + 1) = (4x + 2) \oplus (4y + 1) \equiv 3 \pmod 4$
+        - $g(4x + 2) \oplus g(Xz + 1) = 2 \oplus 0 \equiv 2 \pmod 4$
+        - $g(4x + 3) \oplus g(4y + 4) = (4x + 4) \oplus (4y + 3) \equiv 3 \pmod 4$
+        - $g(4x + 4) \oplus g(4y + 3) = (4x + 3) \oplus (4y + 4) \equiv 3 \pmod 4$
+        - $g(4x + 1) \oplus g(4y + 2) = (4x + 1) \oplus (4y + 2) \equiv 3 \pmod 4$
+        - $g(4x + 2) \oplus g(4y + 1) = (4x + 2) \oplus (4y + 1) \equiv 3 \pmod 4$
 
-        - $0$ には到達できるが、 $1$ には到達できない
+      - $0$ には到達できるが、 $1$ には到達できない
 
-    - よって、 $g(X + 1 + 2) = 1$ が成立する。
+  - よって、 $g(X + 1 + 2) = 1$ が成立する。
 
-  - $g(X + 1 + 3) = g(D + 5)$
+- $g(X + 1 + 3) = g(D + 5)$
 
-    - 攻撃遷移で到達可能な状態は $\lbrace 5, 6 \cdots , D - 1, 0, 2, 1 \rbrace$ であり、 $3$ に到達不可能。
-    - 分裂遷移で到達可能かを下記の 2 パターンで議論する。
+  - 攻撃遷移で到達可能な状態は $\lbrace 5, 6 \cdots , D - 1, 0, 2, 1 \rbrace$ であり、 $3$ に到達不可能。
+  - 分裂遷移で到達可能かを下記の 2 パターンで議論する。
 
-      - $D \equiv 1 \pmod 4$
+    - $D \equiv 1 \pmod 4$
 
-        - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y$ は非負整数)
+      - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y, z$ は非負整数)
 
-          - $g(1) \oplus g(D + 3) = 1 \oplus 1 = 0$
-          - $g(2) \oplus g(D + 2) = 2 \oplus 2 = 0$
-          - $g(3) \oplus g(D + 1) = 4 \oplus 0 = 4$
-          - $g(4x + 4) \oplus g(4y + 2) = (4x + 3) \oplus (4y + 2) \equiv 1 \pmod 4$
-          - $g(4x + 1) \oplus g(4y + 1) = (4x + 1) \oplus (4y + 1) \equiv 0 \pmod 4$
-          - $g(4x + 2) \oplus g(4y + 4) = (4x + 2) \oplus (4y + 3) \equiv 1 \pmod 4$
-          - $g(4x + 3) \oplus g(4y + 3) = (4x + 4) \oplus (4y + 4) \equiv 0 \pmod 4$
+        - $g(4x + 3) \oplus g(Xz + 1) = 4 \oplus 0 \equiv 0 \pmod 4$
+        - $g(4x + 4) \oplus g(4y + 2) = (4x + 3) \oplus (4y + 2) \equiv 1 \pmod 4$
+        - $g(4x + 1) \oplus g(4y + 1) = (4x + 1) \oplus (4y + 1) \equiv 0 \pmod 4$
+        - $g(4x + 2) \oplus g(4y + 4) = (4x + 2) \oplus (4y + 3) \equiv 1 \pmod 4$
+        - $g(4x + 3) \oplus g(4y + 3) = (4x + 4) \oplus (4y + 4) \equiv 0 \pmod 4$
 
-        - $0, 1, 2$ には到達できるが、 $3$ には到達できない
+      - $0, 1, 2$ には到達できるが、 $3$ には到達できない
 
-      - $D \equiv 3 \pmod 4$
+    - $D \equiv 3 \pmod 4$
 
-        - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y$ は非負整数)
+      - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y, z$ は非負整数)
 
-          - $g(1) \oplus g(D + 3) = 1 \oplus 1 = 0$
-          - $g(2) \oplus g(D + 2) = 2 \oplus 2 = 0$
-          - $g(3) \oplus g(D + 1) = 4 \oplus 0 = 4$
-          - $g(4x + 4) \oplus g(4y + 4) = (4x + 3) \oplus (4y + 3) \equiv 0 \pmod 4$
-          - $g(4x + 1) \oplus g(4y + 3) = (4x + 1) \oplus (4y + 4) \equiv 1 \pmod 4$
-          - $g(4x + 2) \oplus g(4y + 2) = (4x + 2) \oplus (4y + 2) \equiv 0 \pmod 4$
-          - $g(4x + 3) \oplus g(4y + 1) = (4x + 4) \oplus (4y + 1) \equiv 1 \pmod 4$
+        - $g(4x + 3) \oplus g(Xz + 1) = 4 \oplus 0 \equiv 0 \pmod 4$
+        - $g(4x + 4) \oplus g(4y + 4) = (4x + 3) \oplus (4y + 3) \equiv 0 \pmod 4$
+        - $g(4x + 1) \oplus g(4y + 3) = (4x + 1) \oplus (4y + 4) \equiv 1 \pmod 4$
+        - $g(4x + 2) \oplus g(4y + 2) = (4x + 2) \oplus (4y + 2) \equiv 0 \pmod 4$
+        - $g(4x + 3) \oplus g(4y + 1) = (4x + 4) \oplus (4y + 1) \equiv 1 \pmod 4$
 
-        - $0, 1, 2$ には到達できるが、 $3$ には到達できない
+      - $0, 1, 2$ には到達できるが、 $3$ には到達できない
 
-    - よって、 $g(X + 1 + 3) = 3$ が成立する。
+  - よって、 $g(X + 1 + 3) = 3$ が成立する。
 
-  - $g(X + 1 + 4) = g(D + 6)$
+- $g(X + 1 + 4) = g(D + 6)$
 
-    - 攻撃遷移で到達可能な状態は $\lbrace 6 \cdots , D - 1, 0, 2, 1, 3 \rbrace$ であり、 $4$ に到達不可能。
-    - 分裂遷移で到達可能かを下記の 2 パターンで議論する。
+  - 攻撃遷移で到達可能な状態は $\lbrace 6 \cdots , D - 1, 0, 2, 1, 3 \rbrace$ であり、 $4$ に到達不可能。
+  - 分裂遷移で到達可能かを下記の 2 パターンで議論する。
 
-      - $D \equiv 1 \pmod 4$
+    - $D \equiv 1 \pmod 4$
 
-        - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y$ は非負整数)
+      - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y, z$ は非負整数)
 
-          - $g(1) \oplus g(D + 4) = 1 \oplus 3 = 2$
-          - $g(2) \oplus g(D + 3) = 2 \oplus 1 = 3$
-          - $g(3) \oplus g(D + 2) = 4 \oplus 2 \equiv 2 \pmod 4$
-          - $g(4) \oplus g(D + 1) = 3 \oplus 0 = 3$
-          - $g(4x + 1) \oplus g(4y + 2) = (4x + 1) \oplus (4y + 2) \equiv 3 \pmod 4$
-          - $g(4x + 2) \oplus g(4y + 1) = (4x + 2) \oplus (4y + 1) \equiv 3 \pmod 4$
-          - $g(4x + 3) \oplus g(4y + 4) = (4x + 4) \oplus (4y + 3) \equiv 3 \pmod 4$
-          - $g(4x + 4) \oplus g(4y + 3) = (4x + 3) \oplus (4y + 4) \equiv 3 \pmod 4$
+        - $g(4x + 4) \oplus g(Xz + 1) = 3 \oplus 0 \equiv 3 \pmod 4$
+        - $g(4x + 1) \oplus g(4y + 2) = (4x + 1) \oplus (4y + 2) \equiv 3 \pmod 4$
+        - $g(4x + 2) \oplus g(4y + 1) = (4x + 2) \oplus (4y + 1) \equiv 3 \pmod 4$
+        - $g(4x + 3) \oplus g(4y + 4) = (4x + 4) \oplus (4y + 3) \equiv 3 \pmod 4$
+        - $g(4x + 4) \oplus g(4y + 3) = (4x + 3) \oplus (4y + 4) \equiv 3 \pmod 4$
 
-        - $0, 1, 2, 3$ には到達できるが、 $4$ には到達できない
+      - $0, 1, 2, 3$ には到達できるが、 $4$ には到達できない
 
-      - $D \equiv 3 \pmod 4$
+    - $D \equiv 3 \pmod 4$
 
-        - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y$ は非負整数)
+      - 分裂遷移の遷移先は全て以下のいずれかのパターンで表せる ($x, y, z$ は非負整数)
 
-          - $g(1) \oplus g(D + 4) = 1 \oplus 3 = 2$
-          - $g(2) \oplus g(D + 3) = 2 \oplus 1 = 3$
-          - $g(3) \oplus g(D + 2) = 4 \oplus 2 \equiv 2 \pmod 4$
-          - $g(4) \oplus g(D + 1) = 3 \oplus 0 = 3$
-          - $g(4x + 1) \oplus g(4y + 4) = (4x + 1) \oplus (4y + 3) \equiv 2 \pmod 4$
-          - $g(4x + 2) \oplus g(4y + 3) = (4x + 2) \oplus (4y + 4) \equiv 2 \pmod 4$
-          - $g(4x + 3) \oplus g(4y + 2) = (4x + 4) \oplus (4y + 2) \equiv 2 \pmod 4$
-          - $g(4x + 4) \oplus g(4y + 1) = (4x + 3) \oplus (4y + 1) \equiv 2 \pmod 4$
+        - $g(4x + 4) \oplus g(Xz + 1) = 3 \oplus 0 \equiv 3 \pmod 4$
+        - $g(4x + 1) \oplus g(4y + 4) = (4x + 1) \oplus (4y + 3) \equiv 2 \pmod 4$
+        - $g(4x + 2) \oplus g(4y + 3) = (4x + 2) \oplus (4y + 4) \equiv 2 \pmod 4$
+        - $g(4x + 3) \oplus g(4y + 2) = (4x + 4) \oplus (4y + 2) \equiv 2 \pmod 4$
+        - $g(4x + 4) \oplus g(4y + 1) = (4x + 3) \oplus (4y + 1) \equiv 2 \pmod 4$
 
-        - $0, 1, 2, 3$ には到達できるが、 $4$ には到達できない
+      - $0, 1, 2, 3$ には到達できるが、 $4$ には到達できない
 
-    - よって、 $g(X + 1 + 4) = 4$ が成立する。
+  - よって、 $g(X + 1 + 4) = 4$ が成立する。
 
-  したがって、 $s = 0$ の場合に命題が成立する。
+したがって、 $s = 0$ の場合に命題が成立する。
 
-- $s = n$ で命題が成立すると仮定した際の $s = n + 1$ の場合
+##### $s = n$ で命題が成立すると仮定した際の $s = n + 1$ の場合
 
-  - 仮定より、下記が言える。
+- まず、下記のように表現ができる。
 
-    - $g(Xt + 1 + 4(n + 1) + 1) = g(Xt + 1 + 4n + 1) + 4$
-    - $g(Xt + 1 + 4(n + 1) + 2) = g(Xt + 1 + 4n + 2) + 4$
-    - $g(Xt + 1 + 4(n + 1) + 3) = g(Xt + 1 + 4n + 3) + 4$
-    - $g(Xt + 1 + 4(n + 1) + 4) = g(Xt + 1 + 4n + 4) + 4$
+  - $g(4(n + 1) + 1) = g(4n + 1 + 4)$
+  - $g(4(n + 1) + 2) = g(4n + 2 + 4)$
+  - $g(4(n + 1) + 3) = g(4n + 3 + 4)$
+  - $g(4(n + 1) + 4) = g(4n + 4 + 4)$
 
-  したがって、 $s = n + 1$ も $s = n$ と同様に議論できることから、命題が成立する。
+- これは $s = n$ に $4$ 項を追加したことを意味するが、 $4$ 項を追加しても分裂遷移にありうるパターンは $s = n$ と変わらない。
+
+したがって、 $s = n + 1$ も $s = n$ と同様の議論を展開できることから、命題が成立する。
 
 - $g(X + 1 + D + 1)$
 
@@ -703,7 +696,9 @@ $$
   - したがって、 $g(X + 1 + D + 1) = 0$
   - これにより、 $s$ に関連する項が $D$ 項分だけ従うことも成立する。
 
-(Ⅱ) $t = 1, 2, \cdots , n$ で命題が成立すると仮定する。 $t = n + 1$ の場合
+#### (Ⅱ) $t = 1, 2, \cdots , n$ で命題が成立すると仮定する。 $t = n + 1$ の場合
+
+##### $s = 0$ の場合
 
 - $g(X(n + 1) + 1) = g((D + 1)(n + 1) + 1)$
 
@@ -722,7 +717,7 @@ $$
 
         - (先頭 $X$ 項の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
-          - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1) = (Xz + 1 + 4x + 1) \oplus 0 \equiv 1 \pmod 4$
+          - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1) = (4x + 1) \oplus 0 \equiv 1 \pmod 4$
           - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1 + 4y + 1) = (4x + 2) \oplus (4y + 2) \equiv 0 \pmod 4$
           - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1 + 4y + 4) = (4x + 4) \oplus (4y + 4) \equiv 0 \pmod 4$
           - $g(Xz + 1 + 4x + 4) \oplus g(Xw + 1 + 4y + 3) = (4x + 3) \oplus (4y + 3) \equiv 0 \pmod 4$
@@ -730,6 +725,7 @@ $$
 
         - (先頭 $X$ 項以降の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
+          - $g(Xz + 1) \oplus g(Xw + 1) = 0 \oplus 0 \equiv 0 \pmod 4$
           - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1 + 4y + 1) = (4x + 2) \oplus (4y + 2) \equiv 0 \pmod 4$
           - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1 + 4y + 4) = (4x + 1) \oplus (4y + 4) \equiv 1 \pmod 4$
           - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1 + 4y + 3) = (4x + 3) \oplus (4y + 3) \equiv 0 \pmod 4$
@@ -751,6 +747,7 @@ $$
 
         - (先頭 $X$ 項以降の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
+          - $g(Xz + 1) \oplus g(Xw + 1) = 0 \oplus 0 \equiv 0 \pmod 4$
           - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1 + 4y + 3) = (4x + 2) \oplus (4y + 3) \equiv 1 \pmod 4$
           - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1 + 4y + 2) = (4x + 1) \oplus (4y + 1) \equiv 0 \pmod 4$
           - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1 + 4y + 1) = (4x + 3) \oplus (4y + 2) \equiv 1 \pmod 4$
@@ -771,7 +768,7 @@ $$
 
         - (先頭 $X$ 項の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
-          - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1) = (4x + 2) \oplus 0 \equiv 1 \pmod 4$
+          - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1) = (4x + 2) \oplus 0 \equiv 2 \pmod 4$
           - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1 + 4y + 1) = (4x + 4) \oplus (4y + 2) \equiv 2 \pmod 4$
           - $g(Xz + 1 + 4x + 4) \oplus g(Xw + 1 + 4y + 4) = (4x + 3) \oplus (4y + 4) \equiv 3 \pmod 4$
           - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1 + 4y + 3) = (4x + 1) \oplus (4y + 3) \equiv 2 \pmod 4$
@@ -779,6 +776,7 @@ $$
 
         - (先頭 $X$ 項以降の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
+          - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1) = 2 \oplus 0 \equiv 2 \pmod 4$
           - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1 + 4y + 1) = (4x + 1) \oplus (4y + 2) \equiv 3 \pmod 4$
           - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1 + 4y + 4) = (4x + 3) \oplus (4y + 4) \equiv 3 \pmod 4$
           - $g(Xz + 1 + 4x + 4) \oplus g(Xw + 1 + 4y + 3) = (4x + 4) \oplus (4y + 3) \equiv 3 \pmod 4$
@@ -792,7 +790,7 @@ $$
 
         - (先頭 $X$ 項の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
-          - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1) = (4x + 2) \oplus 0 \equiv 1 \pmod 4$
+          - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1) = (4x + 2) \oplus 0 \equiv 2 \pmod 4$
           - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1 + 4y + 3) = (4x + 4) \oplus (4y + 3) \equiv 3 \pmod 4$
           - $g(Xz + 1 + 4x + 4) \oplus g(Xw + 1 + 4y + 2) = (4x + 3) \oplus (4y + 1) \equiv 2 \pmod 4$
           - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1 + 4y + 1) = (4x + 1) \oplus (4y + 2) \equiv 3 \pmod 4$
@@ -800,6 +798,7 @@ $$
 
         - (先頭 $X$ 項以降の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
+          - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1) = 2 \oplus 0 \equiv 2 \pmod 4$
           - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1 + 4y + 3) = (4x + 1) \oplus (4y + 3) \equiv 2 \pmod 4$
           - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1 + 4y + 2) = (4x + 3) \oplus (4y + 1) \equiv 2 \pmod 4$
           - $g(Xz + 1 + 4x + 4) \oplus g(Xw + 1 + 4y + 1) = (4x + 4) \oplus (4y + 2) \equiv 2 \pmod 4$
@@ -828,6 +827,7 @@ $$
 
         - (先頭 $X$ 項以降の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
+          - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1) = 1 \oplus 0 \equiv 1 \pmod 4$
           - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1 + 4y + 1) = (4x + 3) \oplus (4y + 2) \equiv 1 \pmod 4$
           - $g(Xz + 1 + 4x + 4) \oplus g(Xw + 1 + 4y + 4) = (4x + 4) \oplus (4y + 4) \equiv 0 \pmod 4$
           - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1 + 4y + 3) = (4x + 2) \oplus (4y + 3) \equiv 1 \pmod 4$
@@ -849,6 +849,7 @@ $$
 
       - (先頭 $X$ 項以降の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
+        - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1) = 1 \oplus 0 \equiv 1 \pmod 4$
         - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1 + 4y + 3) = (4x + 3) \oplus (4y + 3) \equiv 0 \pmod 4$
         - $g(Xz + 1 + 4x + 4) \oplus g(Xw + 1 + 4y + 2) = (4x + 4) \oplus (4y + 1) \equiv 1 \pmod 4$
         - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1 + 4y + 1) = (4x + 2) \oplus (4y + 2) \equiv 0 \pmod 4$
@@ -877,6 +878,7 @@ $$
 
         - (先頭 $X$ 項以降の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
+          - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1) = 3 \oplus 0 \equiv 3 \pmod 4$
           - $g(Xz + 1 + 4x + 4) \oplus g(Xw + 1 + 4y + 1) = (4x + 4) \oplus (4y + 2) \equiv 2 \pmod 4$
           - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1 + 4y + 4) = (4x + 2) \oplus (4y + 4) \equiv 2 \pmod 4$
           - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1 + 4y + 3) = (4x + 1) \oplus (4y + 3) \equiv 2 \pmod 4$
@@ -898,6 +900,7 @@ $$
 
         - (先頭 $X$ 項以降の周期) $\oplus$ (先頭 $X$ 項以降の周期) パターン
 
+          - $g(Xz + 1 + 4x + 3) \oplus g(Xw + 1) = 3 \oplus 0 \equiv 3 \pmod 4$
           - $g(Xz + 1 + 4x + 4) \oplus g(Xw + 1 + 4y + 3) = (4x + 4) \oplus (4y + 3) \equiv 3 \pmod 4$
           - $g(Xz + 1 + 4x + 1) \oplus g(Xw + 1 + 4y + 2) = (4x + 2) \oplus (4y + 1) \equiv 3 \pmod 4$
           - $g(Xz + 1 + 4x + 2) \oplus g(Xw + 1 + 4y + 1) = (4x + 1) \oplus (4y + 2) \equiv 3 \pmod 4$
@@ -909,16 +912,18 @@ $$
 
 したがって、 $s = 0$ の場合に命題が成立する。
 
-(Ⅱ) $s = n$ で命題が成立すると仮定する。 $s = n + 1$ の場合
+##### $s = n$ で命題が成立すると仮定した際の $s = n + 1$ の場合
 
-- 仮定より、下記が言える。
+- まず、下記のように表現ができる。
 
-  - $g(Xt + 1 + 4(n + 1) + 1) = g(Xt + 1 + 4n + 1) + 4$
-  - $g(Xt + 1 + 4(n + 1) + 2) = g(Xt + 1 + 4n + 2) + 4$
-  - $g(Xt + 1 + 4(n + 1) + 3) = g(Xt + 1 + 4n + 3) + 4$
-  - $g(Xt + 1 + 4(n + 1) + 4) = g(Xt + 1 + 4n + 4) + 4$
+  - $g(Xt + 1 + 4(n + 1) + 1) = g(Xt + 1 + 4n + 1 + 4)$
+  - $g(Xt + 1 + 4(n + 1) + 2) = g(Xt + 1 + 4n + 2 + 4)$
+  - $g(Xt + 1 + 4(n + 1) + 3) = g(Xt + 1 + 4n + 3 + 4)$
+  - $g(Xt + 1 + 4(n + 1) + 4) = g(Xt + 1 + 4n + 4 + 4)$
 
-したがって、 $s = n + 1$ も $s = n$ と同様に議論できることから、命題が成立する。
+- これは $s = n$ に $4$ 項を追加したことを意味するが、 $4$ 項を追加しても分裂遷移にありうるパターンは $s = n$ と変わらない。
+
+したがって、 $s = n + 1$ も $s = n$ と同様の議論を展開できることから、命題が成立する。
 
 以上 (Ⅰ) (Ⅱ) より、 $D \equiv 1 \pmod 2$ の時の Grundy 数の一般項が示せた。
 
