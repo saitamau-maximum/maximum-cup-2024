@@ -66,19 +66,29 @@ def solve_dp(n, damage, slimes):
     return "Maximum" if dfs() else "Merin"
 
 if __name__ == "__main__":
+    import sys
     input = sys.stdin.read
     data = input().split()
 
-    n = int(data[0])
-    damage = int(data[1])
-    slimes = []
-
-    index = 2
-    for _ in range(n):
-        h = int(data[index])
-        c = int(data[index + 1])
-        slimes.append((h, c))
+    index = 0
+    q = int(data[index])
+    index += 1
+    
+    results = []
+    
+    for _ in range(q):
+        n = int(data[index])
+        damage = int(data[index + 1])
         index += 2
+        
+        h = list(map(int, data[index:index + n]))
+        index += n
+        c = list(map(int, data[index:index + n]))
+        index += n
+        
+        slimes = [(h[i], c[i]) for i in range(n)]
+        
+        results.append(solve_dp(n, damage, slimes))
 
-    result = solve_dp(n, damage, slimes)
-    print(result)
+    for res in results:
+        print(res)

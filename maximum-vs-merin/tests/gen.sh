@@ -15,6 +15,8 @@ filenames=(
   "02_hand03_task1.in"
   "02_hand04_task1.in"
   "02_hand05_task1.in"
+  "02_hand06_task1.in"
+  "02_hand07_task1.in"
   "02_hand00_task2.in"
   "02_hand01_task2.in"
   "02_hand02_task2.in"
@@ -29,10 +31,18 @@ filenames=(
   "03_max01_task2.in"
   "03_max02_task2.in"
   "03_max03_task2.in"
+  "03_max04_multipair_task2.in"
+  "03_max05_multipair_task2.in"
+  "03_max06_multipair_task2.in"
+  "03_max07_multipair_task2.in"
   "03_max00_all.in"
   "03_max01_all.in"
   "03_max02_all.in"
   "03_max03_all.in"
+  "03_max04_multipair_all.in"
+  "03_max05_multipair_all.in"
+  "03_max06_multipair_all.in"
+  "03_max07_multipair_all.in"
 )
 
 # Check if gen.out exists
