@@ -330,8 +330,7 @@ int main(int argc, char* argv[]) {
 
     // 大量少数ケースはダメージを小さくする (Merin が勝つパターンが出やすいように)
     if (namecontains("massive-small")) {
-        // 1 / 2 でダメージを小さい範囲に絞る
-        damage = rnd.next(2, 10);
+        damage = rnd.next(5, 20);
     }
 
     while(true) {
@@ -355,7 +354,7 @@ int main(int argc, char* argv[]) {
             query.emplace_back(h1, c1);
 
             for(int i = 0; i < num - 1; ++i) {
-                long long h2 = max(1LL, min(h1 + damage + rnd.next(- damage / 2, damage / 2), maxH));
+                long long h2 = max(1LL, min(h1 + damage + rnd.next(- damage, damage), maxH));
                 long long c2 = rnd.next(1LL, maxC);
                 c2 = min(c2 + 1 - (c2 % 2), maxC);
                 query.emplace_back(h2, c2);
