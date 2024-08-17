@@ -35,23 +35,23 @@ int main(int argc, char* argv[]) {
         if (namecontains("hand00")) {
             n = 1;
             d = MaxD;
-            println(1);
-            println(n, d);
+            println(1, d);
+            println(n);
             println(maxH, 1);
             // Maximum 勝利
         } else if (namecontains("hand01")) {
             n = 1;
             d = 1;
-            println(1);
-            println(n, d);
+            println(1, d);
+            println(n);
             println(1, 1);
             // sum = 1 * 1 = 1
             // Maximum 勝利
         } else if (namecontains("hand02")) {
             n = 3;
             d = 3;
-            println(1);
-            println(n, d);
+            println(1, d);
+            println(n);
             println(1, 1); // 1 * 1
             println(2, 1); // 2 * 1
             println(4, 1); // 3 * 1
@@ -61,8 +61,8 @@ int main(int argc, char* argv[]) {
         else if (namecontains("hand03")) {
             n = 5;
             d = 2;
-            println(1);
-            println(n, d);
+            println(1, d);
+            println(n);
             println(1, 4); // 1 * 4
             println(3, 1); // 3 * 1
             println(5, 1); // 5 * 1
@@ -74,8 +74,8 @@ int main(int argc, char* argv[]) {
         else if (namecontains("hand04")) {
             n = 7;
             d = 998244353;
-            println(1);
-            println(n, d);
+            println(1, d);
+            println(n);
             println(1, 1); // 1 * 1
             println(2, 1); // 2 * 1
             println(3, 1); // 3 * 1
@@ -89,8 +89,8 @@ int main(int argc, char* argv[]) {
         else if (namecontains("hand05")) {
             n = 3;
             d = 10;
-            println(1);
-            println(n, d);
+            println(1, d);
+            println(n);
             println(3, 1); // 3 * 1
             println(12, 1); // 12 * 1
             println(15, 1); // 15 * 1
@@ -99,8 +99,10 @@ int main(int argc, char* argv[]) {
         }
         else if (namecontains("hand06")) {
             // 間違えやすいパターン 1
-            println(1);
-            println(3, 2);
+            n = 3;
+            d = 2;
+            println(1, d);
+            println(n);
             println(4, 1); // 4 * 1
             println(2, 1); // 2 * 1
             println(1, 1); // 1 * 1
@@ -109,8 +111,10 @@ int main(int argc, char* argv[]) {
         }
         else if (namecontains("hand07")) {
             // 間違えやすいパターン 2
-            println(1);
-            println(3, 7);
+            n = 3;
+            d = 7;
+            println(1, d);
+            println(n);
             println(16, 1); // 16 * 1
             println(5, 1); // 5 * 1
             println(2, 1); // 2 * 1
@@ -127,13 +131,13 @@ int main(int argc, char* argv[]) {
         maxN = rnd.next(1, MaxQ);
         if (namecontains("max")) {
             n = MaxN;
-            d = MaxD;
+            d = rnd.next(1, MaxD);
             q_sum = MaxQ;
         } else if (namecontains("min")) {
             n = 1;
             d = 1;
-            println(1);
-            println(n, d);
+            println(1, d);
+            println(n);
             long long cnt = rnd.next(2LL, maxC);
             println(rnd.next(1LL, maxH), cnt - (1 - (cnt % 2)));
             return 0;
@@ -142,8 +146,8 @@ int main(int argc, char* argv[]) {
             if (namecontains("hand00")) {
                 n = MaxN;
                 d = 1234;
-                println(1);
-                println(n, d);
+                println(1, d);
+                println(n);
                 for (int i = 1; i <= n; ++i) {
                     println(rnd.next(1LL, maxH), rnd.next(1LL, maxC / 4) * 2);
                 }
@@ -153,8 +157,8 @@ int main(int argc, char* argv[]) {
             else if (namecontains("hand01")) {
                 n = 9;
                 d = 87;
-                println(1);
-                println(n, d);
+                println(1, d);
+                println(n);
                 println(2485 ,836079998);
                 println(2913 ,963280210);
                 println(715 ,589648714);
@@ -170,8 +174,8 @@ int main(int argc, char* argv[]) {
             else if (namecontains("hand02")) {
                 n = 11;
                 d = 438;
-                println(1);
-                println(n, d);
+                println(1, d);
+                println(n);
                 println(1035, 672813920);
                 println(2457, 184920671);
                 println(2999, 573820194);
@@ -189,8 +193,8 @@ int main(int argc, char* argv[]) {
             else if (namecontains("hand03")) {
                 n = 21;
                 d = 1895732;
-                println(1);
-                println(n, d);
+                println(1, d);
+                println(n);
                 println(2485, 836079998);
                 println(2913, 963280210);
                 println(715, 589648714);
@@ -226,15 +230,15 @@ int main(int argc, char* argv[]) {
     } else {
         if (namecontains("max")) {
             n = MaxN;
-            d = MaxD;
+            d = rnd.next(1, MaxD);
             q_sum = MaxQ;
             maxN = rnd.next(1, MaxQ);
         } else if (namecontains("min")) {
             n = 1;
             d = 1;
             q_sum = 1;
-            println(1);
-            println(n, d);
+            println(1, d);
+            println(n);
             long long cnt = rnd.next(2LL, maxC);
             println(rnd.next(1LL, maxH), cnt - (1 - (cnt % 2)));
             return 0;
@@ -243,8 +247,8 @@ int main(int argc, char* argv[]) {
             if (namecontains("hand00")) {
                 n = MaxN;
                 d = 1234567;
-                println(1);
-                println(n, d);
+                println(1, d);
+                println(n);
                 for (int i = 1; i <= n; ++i) {
                     println(rnd.next(1LL, maxH), rnd.next(1LL, maxC / 4) * 2);
                 }
@@ -254,8 +258,8 @@ int main(int argc, char* argv[]) {
             else if (namecontains("hand01")) {
                 n = 7;
                 d = 432897;
-                println(1);
-                println(n, d);
+                println(1, d);
+                println(n);
                 println(836079998, 963280210);
                 println(589648714, 534429842);
                 println(820248911, 727550052);
@@ -269,8 +273,8 @@ int main(int argc, char* argv[]) {
             else if (namecontains("hand02")) {
                 n = 11;
                 d = 7654321;
-                println(1);
-                println(n, d);
+                println(1, d);
+                println(n);
                 println(589473012, 453678321);
                 println(794231456, 286795432);
                 println(912345678, 123456789);
@@ -288,8 +292,8 @@ int main(int argc, char* argv[]) {
             else if (namecontains("hand03")) {
                 n = 21;
                 d = 86732569;
-                println(1);
-                println(n, d);
+                println(1, d);
+                println(n);
                 println(502634415, 800310983);
                 println(430071672, 409710892);
                 println(760313542, 968221089);
@@ -321,19 +325,20 @@ int main(int argc, char* argv[]) {
         }
     }
     
-    int total_query = 0;
+    int total_query = 0, damage = d;
     vector<vector<pair<long long, long long>>> queries;
-    while(true) {
-        int num = rnd.next(1LL, maxN), damage = rnd.next(1, d);
 
-        // 特定のケース以外の hand は num は小さくする
-        if (namecontains("multipair")) {
-            num = rnd.next(2LL, 5LL);
-            if(rnd.next(1LL, 2LL) == 1) {
-                // 1 / 2 でダメージを小さい範囲に絞る
-                damage = rnd.next(1, 10);
-            }
-        }
+    // 大量少数ケースはダメージを小さくする (Merin が勝つパターンが出やすいように)
+    if (namecontains("massive-small")) {
+        // 1 / 2 でダメージを小さい範囲に絞る
+        damage = rnd.next(2, 10);
+    }
+
+    while(true) {
+        int num = rnd.next(1LL, maxN);
+
+        // 特定のケースの hand は num は小さくする
+        if (namecontains("massive-small")) num = rnd.next(2LL, 5LL);
 
         if(total_query + num > q_sum) {
             if(queries.empty()) continue;
@@ -341,12 +346,12 @@ int main(int argc, char* argv[]) {
         }
         total_query += num;
 
-        if (namecontains("multipair")) {
+        if (namecontains("massive-small")) {
             vector<pair<long long, long long>> query;
             long long h1 = rnd.next(1LL, maxH);
             long long c1 = rnd.next(1LL, maxC);
             c1 = min(c1 + 1 - (c1 % 2), maxC);
-            query.emplace_back(num, damage);
+            query.emplace_back(num, -1);
             query.emplace_back(h1, c1);
 
             for(int i = 0; i < num - 1; ++i) {
@@ -360,7 +365,7 @@ int main(int argc, char* argv[]) {
         }
 
         vector<pair<long long, long long>> query;
-        query.emplace_back(num, damage);
+        query.emplace_back(num, -1);
         for (int i = 0; i < num; ++i) {
             query.emplace_back(pair{rnd.next(1LL, maxH), rnd.next(1LL, maxC)});
         }
@@ -368,10 +373,11 @@ int main(int argc, char* argv[]) {
     }
 
     // 出力
-    println(queries.size());
+    println(queries.size(), damage);
     for (const auto &query : queries) {
         for (auto &info : query) {
-            println(info.first, info.second);
+            if(info.second == -1) println(info.first);
+            else println(info.first, info.second);
         }
     }
 

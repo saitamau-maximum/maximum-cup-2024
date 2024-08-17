@@ -54,11 +54,11 @@ int main() {
   cin.tie(nullptr);
   ios_base::sync_with_stdio(false);
 
-  ll q;
-  cin >> q;
+  ll q, damage;
+  cin >> q >> damage;
   while(q--) {
-    ll n, damage;
-    cin >> n >> damage;
+    ll n;
+    cin >> n;
     vector<pair<ll, ll>> slimes;
     for(int i = 0; i < n; i++) {
       ll h, c; cin >> h >> c;

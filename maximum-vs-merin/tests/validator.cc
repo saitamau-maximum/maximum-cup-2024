@@ -5,6 +5,9 @@ int main(int argc, char* argv[]) {
 
     // 1 <= Q <= 2e5
     int Q = inf.readInt(1, 200000, "Q");
+    inf.readSpace();
+    // 1 <= D <= 1e9
+    int D = inf.readInt(1, 1000000000, format("D"));
     inf.readEoln();
 
     long long totalN = 0;
@@ -12,9 +15,6 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < Q; ++i) {
         // 1 <= N <= 2e5
         int N = inf.readInt(1, 200000, format("N[%d]", i));
-        inf.readSpace();
-        // 1 <= D <= 1e9
-        int D = inf.readInt(1, 1000000000, format("D[%d]", i));
         inf.readEoln();
 
         totalN += N;

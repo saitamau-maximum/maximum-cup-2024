@@ -73,13 +73,14 @@ if __name__ == "__main__":
     index = 0
     q = int(data[index])
     index += 1
+    damage = int(data[index])
+    index += 1
     
     results = []
     
     for _ in range(q):
         n = int(data[index])
-        damage = int(data[index + 1])
-        index += 2
+        index += 1
         
         h = list(map(int, data[index:index + n]))
         index += n
