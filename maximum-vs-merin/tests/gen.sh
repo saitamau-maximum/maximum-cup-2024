@@ -43,6 +43,12 @@ filenames=(
   "03_max05_massive-small_all.in"
   "03_max06_massive-small_all.in"
   "03_max07_massive-small_all.in"
+  "03_max08_massive-small_all.in"
+  "03_max09_massive-small_all.in"
+  "03_max10_massive-small_all.in"
+  "03_max11_massive-small_all.in"
+  "03_max12_massive-small_all.in"
+  "03_max13_massive-small_all.in"
 )
 
 # Check if gen.out exists
