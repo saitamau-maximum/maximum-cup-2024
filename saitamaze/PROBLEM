@@ -1,0 +1,9 @@
+# -*- coding: utf-8; mode: python -*-
+
+pid='saitamaze'
+
+problem(
+  time_limit=2.0,
+  id=pid,
+  title="SaitaMaze",
+)
