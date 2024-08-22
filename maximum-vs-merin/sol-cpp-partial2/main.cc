@@ -23,11 +23,17 @@ int main() {
 
   // Grundy 数を前計算
   grundy.assign(MAX_H + 1, 0);
+  vector<ll> tmp_mex(2 * MAX_H, 0);
   for(int i = 1; i <= MAX_H; i++) {
-    set<ll> s;
-    for(int j = 1; j <= min((int) damage, i); j++) s.insert(grundy[i - j]);
-    for(int j = 1; j <= i / 2; j++) s.insert(grundy[j] ^ grundy[i - j]);
-    while(s.count(grundy[i])) grundy[i]++;
+    for(int j = 1; j <= min((int) damage, i); j++) {
+      ll ele = grundy[i - j];
+      if(ele < 2 * MAX_H) tmp_mex[ele] = i;
+    }
+    for(int j = 1; j <= i / 2; j++) {
+      ll ele = grundy[j] ^ grundy[i - j];
+      if(ele < 2 * MAX_H) tmp_mex[ele] = i;
+    }
+    while(tmp_mex[grundy[i]] == i) grundy[i]++;
   }
 
   while(q--) {
@@ -35,7 +41,8 @@ int main() {
     cin >> n;
     vector<pair<ll, ll>> slimes;
     for(int i = 0; i < n; i++) {
-      ll h, c; cin >> h >> c;
+      ll h, c;
+      cin >> h >> c;
       slimes.emplace_back(h, c);
     }
     cout << solve_grundy(slimes) << '\n';

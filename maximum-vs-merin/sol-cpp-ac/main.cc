@@ -61,7 +61,8 @@ int main() {
     cin >> n;
     vector<pair<ll, ll>> slimes;
     for(int i = 0; i < n; i++) {
-      ll h, c; cin >> h >> c;
+      ll h, c;
+      cin >> h >> c;
       slimes.emplace_back(h, c);
     }
     cout << solve_grundy_fast(n, damage, slimes) << '\n';

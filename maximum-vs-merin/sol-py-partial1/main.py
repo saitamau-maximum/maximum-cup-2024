@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 
-import sys
+from collections import defaultdict
 from functools import lru_cache
 
 
 def solve_dp(n, damage, slimes):
     h_max = 0
-    for h, _ in slimes:
+    for h, c in slimes:
         h_max = max(h_max, h)
 
     h_cnt = [0] * (h_max + 1)
     for h, c in slimes:
-        h_cnt[h] += c
+        h_cnt[h] = c
 
     memo = {}
 
     def dfs():
-        state = tuple(h_cnt)  # h_cntの状態をタプルに変換してセットに格納
-        if state in memo:
-            return memo[state]
+        h_cnt_tuple = tuple(h_cnt)
+        if h_cnt_tuple in memo:
+            return memo[h_cnt_tuple]
         res = False
 
         # 分割遷移
@@ -29,9 +29,7 @@ def solve_dp(n, damage, slimes):
             for j in range(1, i // 2 + 1):
                 h_cnt[j] += 1
                 h_cnt[i - j] += 1
-
                 res |= not dfs()
-
                 h_cnt[j] -= 1
                 h_cnt[i - j] -= 1
                 if res:
@@ -49,9 +47,7 @@ def solve_dp(n, damage, slimes):
                 for j in range(1, min(damage, i) + 1):
                     if i - j != 0:
                         h_cnt[i - j] += 1
-
                     res |= not dfs()
-
                     if i - j != 0:
                         h_cnt[i - j] -= 1
                     if res:
@@ -60,7 +56,7 @@ def solve_dp(n, damage, slimes):
                 if res:
                     break
 
-        memo[state] = res
+        memo[h_cnt_tuple] = res
         return res
 
     return "Maximum" if dfs() else "Merin"
@@ -68,28 +64,16 @@ def solve_dp(n, damage, slimes):
 if __name__ == "__main__":
     import sys
     input = sys.stdin.read
-    data = input().split()
+    data = input().splitlines()
 
-    index = 0
-    q = int(data[index])
-    index += 1
-    damage = int(data[index])
-    index += 1
-    
+    q, damage = map(int, data[0].split())
     results = []
-    
-    for _ in range(q):
-        n = int(data[index])
-        index += 1
-        
-        h = list(map(int, data[index:index + n]))
-        index += n
-        c = list(map(int, data[index:index + n]))
-        index += n
-        
-        slimes = [(h[i], c[i]) for i in range(n)]
-        
+    for i in range(1, q + 1):
+        n = int(data[2 * i - 1])
+        slimes = []
+        for j in range(n):
+            h, c = map(int, data[2 * i + j].split())
+            slimes.append((h, c))
         results.append(solve_dp(n, damage, slimes))
 
-    for res in results:
-        print(res)
+    print("\n".join(results))

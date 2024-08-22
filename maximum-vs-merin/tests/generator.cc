@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     // 各タスクの最大値
     constexpr int Task1_MaxH = 30;
     constexpr int Task1_MaxC = 30;
-    constexpr int Task2_MaxH = 3'000;
+    constexpr int Task2_MaxH = 1'000;
 
     int n;
     int d;
@@ -155,19 +155,18 @@ int main(int argc, char* argv[]) {
                 return 0;
             }
             else if (namecontains("hand01")) {
-                n = 9;
+                n = 8;
                 d = 87;
                 println(1, d);
                 println(n);
-                println(2485 ,836079998);
-                println(2913 ,963280210);
-                println(715 ,589648714);
-                println(1839 ,534429842);
-                println(1952 ,820248911);
-                println(1023 ,727550052);
-                println(2998 ,438405271);
-                println(12 ,3);
-                println(90 ,19);
+                println(485, 836079998);
+                println(913, 963280210);
+                println(715, 589648714);
+                println(839, 534429842);
+                println(52 , 820248911);
+                println(23 , 727550052);
+                println(998, 438405271);
+                println(135, 29501875);
                 // Merin 勝利パターン 1
                 return 0;
             }
@@ -176,17 +175,17 @@ int main(int argc, char* argv[]) {
                 d = 438;
                 println(1, d);
                 println(n);
-                println(1035, 672813920);
-                println(2457, 184920671);
-                println(2999, 573820194);
-                println(1508, 890712345);
-                println(2341, 128390472);
-                println(762, 902817364);
-                println(1884, 342718293);
-                println(2992, 748291036);
-                println(1801, 918273645);
-                println(2793, 465738291);
-                println(369, 123839291);
+                println(35 , 672813920);
+                println(457, 184920671);
+                println(999, 573820194);
+                println(508, 890712345);
+                println(341, 128390472);
+                println(62 , 902817364);
+                println(884, 342718293);
+                println(992, 748291036);
+                println(801, 918273645);
+                println(793, 465738291);
+                println(89 , 123839291);
                 // Merin 勝利パターン 2
                 return 0;
             }
@@ -195,27 +194,27 @@ int main(int argc, char* argv[]) {
                 d = 1895732;
                 println(1, d);
                 println(n);
-                println(2485, 836079998);
-                println(2913, 963280210);
-                println(715, 589648714);
-                println(1839, 534429842);
-                println(1952, 820248911);
-                println(1023, 727550052);
-                println(2998, 438405271);
-                println(1527, 856379210);
-                println(2301, 472890145);
-                println(1246, 918273645);
-                println(867, 102938475);
-                println(2990, 203847561);
-                println(1783, 564738291);
-                println(2921, 987654321);
-                println(1456, 123456789);
-                println(2817, 456789012);
-                println(914, 678901234);
-                println(2753, 876543210);
-                println(1065, 234567890);
-                println(2996, 345678901);
-                println(2893, 489174199);
+                println(485, 836079998);
+                println(913, 963280210);
+                println(15 , 589648714);
+                println(839, 534429842);
+                println(952, 820248911);
+                println(23 , 727550052);
+                println(998, 438405271);
+                println(527, 856379210);
+                println(301, 472890145);
+                println(246, 918273645);
+                println(67 , 102938475);
+                println(990, 203847561);
+                println(783, 564738291);
+                println(921, 987654321);
+                println(456, 123456789);
+                println(817, 456789012);
+                println(14 , 678901234);
+                println(753, 876543210);
+                println(65 , 234567890);
+                println(192 , 345678901);
+                println(993, 489174199);
                 // Merin 勝利パターン 3
                 return 0;
             }
