@@ -14,17 +14,17 @@ def main():
     G.add_nodes_from(range(n))
     for i in range(m):
         u, v, t = map(int, stdin.readline().split())
-        G.add_edge(u - 1, v - 1, weight=h)
+        G.add_edge(u - 1, v - 1, weight=t)
         Graph[u - 1].append(i)
         revGraph[v - 1].append(i)
-        edges.append((u - 1, v - 1, h))
+        edges.append((u - 1, v - 1, t))
 
     if not nx.is_directed_acyclic_graph(G):
         print(-1)
         return
 
     ans = [0] * m
-    for v in reversed(nx.topological_sort(G)):
+    for v in reversed(list(nx.topological_sort(G))):
         if len(revGraph[v]) > 0:
             eid = revGraph[v][0]
             ans[eid] = c[v]
