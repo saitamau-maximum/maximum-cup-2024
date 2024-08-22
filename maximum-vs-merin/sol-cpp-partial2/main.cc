@@ -2,7 +2,7 @@
 using namespace std;
 using ll = long long;
 
-constexpr int MAX_H = 3000;
+constexpr int MAX_H = 1000;
 vector<ll> grundy(MAX_H + 1, 0);
 
 string solve_grundy(vector<pair<ll, ll>> slimes) {

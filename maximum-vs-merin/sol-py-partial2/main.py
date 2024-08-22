@@ -1,4 +1,6 @@
-MAX_H = 3000
+#!/usr/bin/env python3
+
+MAX_H = 1000
 grundy = [0] * (MAX_H + 1)
 
 def solve_grundy(slimes):
