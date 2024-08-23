@@ -51,6 +51,33 @@ int main(int argc, char* argv[]) {
     println(0, 1, 0, 1);
     return 0;
   }
+  constexpr int MaxN = 200'000;
+  if (namecontains("hand05")) {
+    println(MaxN, 0);
+    vector<int> alpha(MaxN, 0), beta(MaxN, 0);
+    for (int i = 0; i < MaxN / 2; ++i) alpha[i] = beta[MaxN - i - 1] = 1;
+    println(alpha);
+    println(beta);
+    return 0;
+  }
+  if (namecontains("hand06")) {
+    println(MaxN, 0);
+    vector<int> alpha(MaxN, 1), beta(MaxN, 1);
+    for (int i = 0; i < MaxN / 2; ++i) alpha[i] = beta[MaxN - i - 1] = 0;
+    println(alpha);
+    println(beta);
+    return 0;
+  }
+  if (namecontains("hand07") || namecontains("hand08") || namecontains("hand09")) {
+    int n = rnd.next(2, MaxN / 2) * 2;
+    println(n, 0);
+    int x = rnd.next(0, 1);
+    vector<int> alpha(n, x), beta(n, x);
+    for (int i = 0; i < n / 2; ++i) alpha[i] = beta[n - i - 1] = !x;
+    println(alpha);
+    println(beta);
+    return 0;
+  }
 
   // ---------- others ---------- //
   int n = -1, m = -1;
