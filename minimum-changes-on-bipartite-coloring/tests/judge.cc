@@ -2,10 +2,10 @@
 
 using namespace std;
 
-inline void quitWithPoint(int point, TResult result, string message, bool noOutput) {
+inline void quitWithPoint(int point, TResult result, string message) {
   bool is_mofe = true;  // TODO: change here
   if (is_mofe) {
-    if (!noOutput) cout << "MofeJudge::Score(" << point << ")" << endl;
+    cout << "MofeJudge::Score(" << point << ")" << endl;
     quit(result, message);
   }
   else {
@@ -34,19 +34,18 @@ int main(int argc, char *argv[]) {
   int out_op = ouf.readInt();
   if (ans_op != out_op) {
     // 異なっていれば WA
-    quitWithPoint(0, _wa, "wrong operation count", false);
+    quitWithPoint(0, _wa, "wrong operation count");
   }
 
-  bool isTask1 = n <= 8;
-  // コーナーケースを all に含めたいので、そういうケースについては採点集計対象外とすることで予期せぬ得点獲得を防ぐ
+  // コーナーケースを all に含めたいので
   // token 2 が 0 の場合は採点集計対象外
-  bool noOutput = isTask1 && !ans.seekEof() && ans.readInt() == 0;
+  bool isTask1 = n <= 8 && !ans.seekEof() && ans.readInt() == 0;
 
   if (ans_op == -1) {
     if (ouf.seekEof())
-      quitWithPoint(isTask1 ? 30 : 70, _ok, "operation count is -1", noOutput);
+      quitWithPoint(isTask1 ? 30 : 70, _ok, "operation count is -1");
     else
-      quitWithPoint(0, _wa, "expected operation count is -1, but found some operations", false);
+      quitWithPoint(0, _wa, "expected operation count is -1, but found some operations");
   }
 
   // 正しい操作列かチェック
@@ -58,14 +57,14 @@ int main(int argc, char *argv[]) {
     ++op_cnt;
     int v = ouf.readInt();
     int c = ouf.readInt();
-    if (!(1 <= v && v <= n)) quitWithPoint(point, _partially, "invalid vertex number", noOutput);
-    if (c != 0 && c != 1) quitWithPoint(point, _partially, "invalid color", noOutput);
+    if (!(1 <= v && v <= n)) quitWithPoint(point, _partially, "invalid vertex number");
+    if (c != 0 && c != 1) quitWithPoint(point, _partially, "invalid color");
 
     --v;
-    if (alpha[v] == c) quitWithPoint(point, _partially, "changing to the same color", noOutput);
-    if (deg[v] != 0) quitWithPoint(point, _partially, "changing color of a vertex with neighbors", noOutput);
-    if (c == 0 && cnt1 == 1) quitWithPoint(point, _partially, "color 1 will be empty", noOutput);
-    if (c == 1 && cnt0 == 1) quitWithPoint(point, _partially, "color 0 will be empty", noOutput);
+    if (alpha[v] == c) quitWithPoint(point, _partially, "changing to the same color");
+    if (deg[v] != 0) quitWithPoint(point, _partially, "changing color of a vertex with neighbors");
+    if (c == 0 && cnt1 == 1) quitWithPoint(point, _partially, "color 1 will be empty");
+    if (c == 1 && cnt0 == 1) quitWithPoint(point, _partially, "color 0 will be empty");
 
     alpha[v] = c;
     if (c == 0)
@@ -74,8 +73,8 @@ int main(int argc, char *argv[]) {
       cnt0--, cnt1++;
   }
 
-  if (op_cnt > ans_op) quitWithPoint(point, _partially, "operation count is greater than expected", noOutput);
-  if (op_cnt < ans_op) quitWithPoint(point, _partially, "operation count is less than expected", noOutput);
+  if (op_cnt > ans_op) quitWithPoint(point, _partially, "operation count is greater than expected");
+  if (op_cnt < ans_op) quitWithPoint(point, _partially, "operation count is less than expected");
 
-  quitWithPoint(isTask1 ? 30 : 70, _ok, "correct operation count", noOutput);
+  quitWithPoint(isTask1 ? 30 : 70, _ok, "correct operation count");
 }
