@@ -68,13 +68,34 @@ int main(int argc, char* argv[]) {
     println(beta);
     return 0;
   }
-  if (namecontains("hand07") || namecontains("hand08") || namecontains("hand09")) {
-    int n = rnd.next(2, MaxN / 2) * 2;
-    println(n, 0);
-    int x = rnd.next(0, 1);
-    int y = rnd.next(0, 1);
-    vector<int> alpha(n, x), beta(n, x);
-    (y ? alpha : beta)[0] = (y ? beta : alpha)[n - 1] = !x;
+  if (namecontains("hand07")) {
+    println(MaxN, 0);
+    vector<int> alpha(MaxN, 0), beta(MaxN, 0);
+    alpha[0] = beta[1] = 1;
+    println(alpha);
+    println(beta);
+    return 0;
+  }
+  if (namecontains("hand08")) {
+    println(MaxN, 0);
+    vector<int> alpha(MaxN, 0), beta(MaxN, 0);
+    alpha[1] = beta[0] = 1;
+    println(alpha);
+    println(beta);
+    return 0;
+  }
+  if (namecontains("hand09")) {
+    println(MaxN, 0);
+    vector<int> alpha(MaxN, 1), beta(MaxN, 1);
+    alpha[0] = beta[1] = 0;
+    println(alpha);
+    println(beta);
+    return 0;
+  }
+  if (namecontains("hand10")) {
+    println(MaxN, 0);
+    vector<int> alpha(MaxN, 1), beta(MaxN, 1);
+    alpha[1] = beta[0] = 0;
     println(alpha);
     println(beta);
     return 0;

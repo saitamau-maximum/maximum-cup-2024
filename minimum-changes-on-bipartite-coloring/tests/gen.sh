@@ -14,6 +14,7 @@ filenames=(
   "02_hand07_all.in"
   "02_hand08_all.in"
   "02_hand09_all.in"
+  "02_hand10_all.in"
   "03_min00_task1.in"
   "03_min01_task1.in"
   "03_max00_task1.in"
