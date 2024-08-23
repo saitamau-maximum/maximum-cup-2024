@@ -72,8 +72,9 @@ int main(int argc, char* argv[]) {
     int n = rnd.next(2, MaxN / 2) * 2;
     println(n, 0);
     int x = rnd.next(0, 1);
+    int y = rnd.next(0, 1);
     vector<int> alpha(n, x), beta(n, x);
-    for (int i = 0; i < n / 2; ++i) alpha[i] = beta[n - i - 1] = !x;
+    (y ? alpha : beta)[0] = (y ? beta : alpha)[n - 1] = !x;
     println(alpha);
     println(beta);
     return 0;
