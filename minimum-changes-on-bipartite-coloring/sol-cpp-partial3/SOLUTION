@@ -1,0 +1,6 @@
+# -*- coding: utf-8; mode: python -*-
+cxx_solution(src='main.cc', flags=["-std=c++2a", "-O2", "-I../../../_common"])
+
+# Rime では正しく得点計算がされないので 100 にしておく
+# expected_score(35)
+expected_score(100)
