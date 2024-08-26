@@ -38,8 +38,8 @@ int main(int argc, char *argv[]) {
   }
 
   // コーナーケースを all に含めたいので
-  // token 2 が 0 の場合は採点集計対象外
-  bool isTask1 = n <= 8 && !ans.seekEof() && ans.readInt() == 0;
+  // token 2 が 0 の場合は all とみなす
+  bool isTask1 = n <= 8 && (ans.seekEof() || ans.readInt() != 0);
 
   if (ans_op == -1) {
     if (ouf.seekEof())
