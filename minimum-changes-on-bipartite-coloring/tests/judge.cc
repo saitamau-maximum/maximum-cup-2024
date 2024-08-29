@@ -76,5 +76,7 @@ int main(int argc, char *argv[]) {
   if (op_cnt > ans_op) quitWithPoint(point, _partially, "operation count is greater than expected");
   if (op_cnt < ans_op) quitWithPoint(point, _partially, "operation count is less than expected");
 
+  if (alpha != beta) quitWithPoint(point, _partially, "alpha is not beta");
+
   quitWithPoint(isTask1 ? 30 : 70, _ok, "correct operation count");
 }
