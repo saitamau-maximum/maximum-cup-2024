@@ -58,14 +58,19 @@ int main() {
   cin.tie(nullptr);
   ios_base::sync_with_stdio(false);
 
-  ll n, damage;
-  cin >> n >> damage;
-  vector<pair<ll, ll>> slimes(n);
-  for(int i = 0; i < n; ++i) {
-    cin >> slimes[i].first >> slimes[i].second;
+  ll q, damage;
+  cin >> q >> damage;
+  while(q--) {
+    ll n;
+    cin >> n;
+    vector<pair<ll, ll>> slimes;
+    for(int i = 0; i < n; i++) {
+      ll h, c;
+      cin >> h >> c;
+      slimes.emplace_back(h, c);
+    }
+    cout << solve_dp(n, damage, slimes) << '\n';
   }
-
-  cout << solve_dp(n, damage, slimes) << '\n';
 
   return 0;
 }

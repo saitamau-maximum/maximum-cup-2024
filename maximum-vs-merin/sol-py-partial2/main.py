@@ -1,47 +1,49 @@
 #!/usr/bin/env python3
 
-def solve_grundy(n, damage, slimes):
-    # ========== Grundy 数を O(max(H)^2) で求める解法 ========== #
-    h_max = 0
-    for h, _ in slimes:
-        h_max = max(h_max, h)
-    
-    h_cnt = [0] * (h_max + 1)
-    for h, c in slimes:
-        h_cnt[h] += c
+MAX_H = 1000
+grundy = [0] * (MAX_H + 1)
 
-    grundy = [0] * (h_max + 1)
-    for i in range(1, h_max + 1):
-        s = set()
-        for j in range(1, min(damage, i) + 1):
-            s.add(grundy[i - j])
-        for j in range(1, i // 2 + 1):
-            s.add(grundy[j] ^ grundy[i - j])
-        while grundy[i] in s:
-            grundy[i] += 1
-
+def solve_grundy(slimes):
     ans = 0
-    for i in range(h_max + 1):
-        if h_cnt[i] % 2 == 0:
+    for h, c in slimes:
+        if c % 2 == 0:
             continue
-        ans ^= grundy[i]
-    
+        ans ^= grundy[h]
     return "Maximum" if ans != 0 else "Merin"
+
+def precompute_grundy(damage):
+    tmp_mex = [0] * (2 * MAX_H)
+    for i in range(1, MAX_H + 1):
+        for j in range(1, min(damage, i) + 1):
+            ele = grundy[i - j]
+            if ele < 2 * MAX_H:
+                tmp_mex[ele] = i
+        for j in range(1, i // 2 + 1):
+            ele = grundy[j] ^ grundy[i - j]
+            if ele < 2 * MAX_H:
+                tmp_mex[ele] = i
+        while tmp_mex[grundy[i]] == i:
+            grundy[i] += 1
 
 if __name__ == "__main__":
     import sys
     input = sys.stdin.read
-    data = input().split()
+    data = input().splitlines()
 
-    n = int(data[0])
-    damage = int(data[1])
-    slimes = []
+    q, damage = map(int, data[0].split())
 
-    index = 2
-    for _ in range(n):
-        h = int(data[index])
-        c = int(data[index + 1])
-        slimes.append((h, c))
-        index += 2
+    # Grundy 数の前計算
+    precompute_grundy(damage)
 
-    print(solve_grundy(n, damage, slimes))
+    results = []
+    idx = 1
+    for _ in range(q):
+        n = int(data[idx])
+        slimes = []
+        for i in range(n):
+            h, c = map(int, data[idx + i + 1].split())
+            slimes.append((h, c))
+        results.append(solve_grundy(slimes))
+        idx += n + 1
+
+    print("\n".join(results))

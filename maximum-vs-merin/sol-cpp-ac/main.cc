@@ -54,15 +54,19 @@ int main() {
   cin.tie(nullptr);
   ios_base::sync_with_stdio(false);
 
-  ll n, damage;
-  vector<pair<ll, ll>> slimes;
-  cin >> n >> damage;
-  for(int i = 0; i < n; i++) {
-    ll h, c;
-    cin >> h >> c;
-    slimes.emplace_back(pair(h, c));
+  ll q, damage;
+  cin >> q >> damage;
+  while(q--) {
+    ll n;
+    cin >> n;
+    vector<pair<ll, ll>> slimes;
+    for(int i = 0; i < n; i++) {
+      ll h, c;
+      cin >> h >> c;
+      slimes.emplace_back(h, c);
+    }
+    cout << solve_grundy_fast(n, damage, slimes) << '\n';
   }
-  cout << solve_grundy_fast(n, damage, slimes) << '\n';
 
   return 0;
 }

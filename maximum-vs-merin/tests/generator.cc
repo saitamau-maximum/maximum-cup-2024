@@ -14,16 +14,19 @@ int main(int argc, char* argv[]) {
     constexpr long long MaxC = 1'000'000'000;  // 1e9
     constexpr int MaxN = 200'000;              // 2e5
     constexpr int MaxD = 1'000'000'000;        // 1e9
+    constexpr int MaxQ = 200'000;              // 2e5
 
     // 各タスクの最大値
     constexpr int Task1_MaxH = 30;
     constexpr int Task1_MaxC = 30;
-    constexpr int Task2_MaxH = 3'000;
+    constexpr int Task2_MaxH = 1'000;
 
     int n;
     int d;
+    int q_sum;
     long long maxH = MaxH;
     long long maxC = MaxC;
+    long long maxN = MaxN;
 
     if (namecontains("task1")) {
         // task 1 だけ ∑ H_i * C_i <= 30 という癖のある制約がある ⇒ 全部 hand で作成
@@ -32,20 +35,23 @@ int main(int argc, char* argv[]) {
         if (namecontains("hand00")) {
             n = 1;
             d = MaxD;
-            println(n, d);
+            println(1, d);
+            println(n);
             println(maxH, 1);
             // Maximum 勝利
         } else if (namecontains("hand01")) {
             n = 1;
             d = 1;
-            println(n, d);
+            println(1, d);
+            println(n);
             println(1, 1);
             // sum = 1 * 1 = 1
             // Maximum 勝利
         } else if (namecontains("hand02")) {
             n = 3;
             d = 3;
-            println(n, d);
+            println(1, d);
+            println(n);
             println(1, 1); // 1 * 1
             println(2, 1); // 2 * 1
             println(4, 1); // 3 * 1
@@ -55,7 +61,8 @@ int main(int argc, char* argv[]) {
         else if (namecontains("hand03")) {
             n = 5;
             d = 2;
-            println(n, d);
+            println(1, d);
+            println(n);
             println(1, 4); // 1 * 4
             println(3, 1); // 3 * 1
             println(5, 1); // 5 * 1
@@ -67,7 +74,8 @@ int main(int argc, char* argv[]) {
         else if (namecontains("hand04")) {
             n = 7;
             d = 998244353;
-            println(n, d);
+            println(1, d);
+            println(n);
             println(1, 1); // 1 * 1
             println(2, 1); // 2 * 1
             println(3, 1); // 3 * 1
@@ -81,12 +89,37 @@ int main(int argc, char* argv[]) {
         else if (namecontains("hand05")) {
             n = 3;
             d = 10;
-            println(n, d);
+            println(1, d);
+            println(n);
             println(3, 1); // 3 * 1
             println(12, 1); // 12 * 1
             println(15, 1); // 15 * 1
             // sum = 3 + 12 + 15 = 30
             // Maximum 勝利
+        }
+        else if (namecontains("hand06")) {
+            // 間違えやすいパターン 1
+            n = 3;
+            d = 2;
+            println(1, d);
+            println(n);
+            println(4, 1); // 4 * 1
+            println(2, 1); // 2 * 1
+            println(1, 1); // 1 * 1
+            // sum = 4 + 2 + 1 = 7
+            // Merin 勝利
+        }
+        else if (namecontains("hand07")) {
+            // 間違えやすいパターン 2
+            n = 3;
+            d = 7;
+            println(1, d);
+            println(n);
+            println(16, 1); // 16 * 1
+            println(5, 1); // 5 * 1
+            println(2, 1); // 2 * 1
+            // sum = 16 + 5 + 2 = 23
+            // Merin 勝利
         }
         else {
             cerr << "Invalid filename: " << filename << endl;
@@ -95,18 +128,26 @@ int main(int argc, char* argv[]) {
         return 0;
     } else if (namecontains("task2")) {
         maxH = Task2_MaxH;
+        maxN = rnd.next(1, MaxQ);
         if (namecontains("max")) {
             n = MaxN;
-            d = MaxD;
+            d = rnd.next(1, MaxD);
+            q_sum = MaxQ;
         } else if (namecontains("min")) {
             n = 1;
             d = 1;
+            println(1, d);
+            println(n);
+            long long cnt = rnd.next(2LL, maxC);
+            println(rnd.next(1LL, maxH), cnt - (1 - (cnt % 2)));
+            return 0;
         } else {
             // random はほぼ全部 Maximum が勝ちそうなので hand は全て Merin 勝利になるように設定
             if (namecontains("hand00")) {
                 n = MaxN;
                 d = 1234;
-                println(n, d);
+                println(1, d);
+                println(n);
                 for (int i = 1; i <= n; ++i) {
                     println(rnd.next(1LL, maxH), rnd.next(1LL, maxC / 4) * 2);
                 }
@@ -114,64 +155,66 @@ int main(int argc, char* argv[]) {
                 return 0;
             }
             else if (namecontains("hand01")) {
-                n = 9;
+                n = 8;
                 d = 87;
-                println(n, d);
-                println(2485 ,836079998);
-                println(2913 ,963280210);
-                println(715 ,589648714);
-                println(1839 ,534429842);
-                println(1952 ,820248911);
-                println(1023 ,727550052);
-                println(2998 ,438405271);
-                println(12 ,3);
-                println(90 ,19);
+                println(1, d);
+                println(n);
+                println(485, 836079998);
+                println(913, 963280210);
+                println(715, 589648714);
+                println(839, 534429842);
+                println(52 , 820248911);
+                println(23 , 727550052);
+                println(998, 438405271);
+                println(135, 29501875);
                 // Merin 勝利パターン 1
                 return 0;
             }
             else if (namecontains("hand02")) {
                 n = 11;
                 d = 438;
-                println(n, d);
-                println(1035, 672813920);
-                println(2457, 184920671);
-                println(2999, 573820194);
-                println(1508, 890712345);
-                println(2341, 128390472);
-                println(762, 902817364);
-                println(1884, 342718293);
-                println(2992, 748291036);
-                println(1801, 918273645);
-                println(2793, 465738291);
-                println(369, 123839291);
+                println(1, d);
+                println(n);
+                println(35 , 672813920);
+                println(457, 184920671);
+                println(999, 573820194);
+                println(508, 890712345);
+                println(341, 128390472);
+                println(62 , 902817364);
+                println(884, 342718293);
+                println(992, 748291036);
+                println(801, 918273645);
+                println(793, 465738291);
+                println(89 , 123839291);
                 // Merin 勝利パターン 2
                 return 0;
             }
             else if (namecontains("hand03")) {
                 n = 21;
                 d = 1895732;
-                println(n, d);
-                println(2485, 836079998);
-                println(2913, 963280210);
-                println(715, 589648714);
-                println(1839, 534429842);
-                println(1952, 820248911);
-                println(1023, 727550052);
-                println(2998, 438405271);
-                println(1527, 856379210);
-                println(2301, 472890145);
-                println(1246, 918273645);
-                println(867, 102938475);
-                println(2990, 203847561);
-                println(1783, 564738291);
-                println(2921, 987654321);
-                println(1456, 123456789);
-                println(2817, 456789012);
-                println(914, 678901234);
-                println(2753, 876543210);
-                println(1065, 234567890);
-                println(2996, 345678901);
-                println(2893, 489174199);
+                println(1, d);
+                println(n);
+                println(485, 836079998);
+                println(913, 963280210);
+                println(15 , 589648714);
+                println(839, 534429842);
+                println(952, 820248911);
+                println(23 , 727550052);
+                println(998, 438405271);
+                println(527, 856379210);
+                println(301, 472890145);
+                println(246, 918273645);
+                println(67 , 102938475);
+                println(990, 203847561);
+                println(783, 564738291);
+                println(921, 987654321);
+                println(456, 123456789);
+                println(817, 456789012);
+                println(14 , 678901234);
+                println(753, 876543210);
+                println(65 , 234567890);
+                println(192 , 345678901);
+                println(993, 489174199);
                 // Merin 勝利パターン 3
                 return 0;
             }
@@ -181,20 +224,30 @@ int main(int argc, char* argv[]) {
             }
             n = rnd.next(1, MaxN);
             d = rnd.next(1, MaxD);
+            q_sum = rnd.next(1, MaxQ);
         }
     } else {
         if (namecontains("max")) {
             n = MaxN;
-            d = MaxD;
+            d = rnd.next(1, MaxD);
+            q_sum = MaxQ;
+            maxN = rnd.next(1, MaxQ);
         } else if (namecontains("min")) {
             n = 1;
             d = 1;
+            q_sum = 1;
+            println(1, d);
+            println(n);
+            long long cnt = rnd.next(2LL, maxC);
+            println(rnd.next(1LL, maxH), cnt - (1 - (cnt % 2)));
+            return 0;
         } else {
             // random はほぼ全部 Maximum が勝ちそうなので hand は全て Merin 勝利になるように設定
             if (namecontains("hand00")) {
                 n = MaxN;
                 d = 1234567;
-                println(n, d);
+                println(1, d);
+                println(n);
                 for (int i = 1; i <= n; ++i) {
                     println(rnd.next(1LL, maxH), rnd.next(1LL, maxC / 4) * 2);
                 }
@@ -204,7 +257,8 @@ int main(int argc, char* argv[]) {
             else if (namecontains("hand01")) {
                 n = 7;
                 d = 432897;
-                println(n, d);
+                println(1, d);
+                println(n);
                 println(836079998, 963280210);
                 println(589648714, 534429842);
                 println(820248911, 727550052);
@@ -218,7 +272,8 @@ int main(int argc, char* argv[]) {
             else if (namecontains("hand02")) {
                 n = 11;
                 d = 7654321;
-                println(n, d);
+                println(1, d);
+                println(n);
                 println(589473012, 453678321);
                 println(794231456, 286795432);
                 println(912345678, 123456789);
@@ -236,7 +291,8 @@ int main(int argc, char* argv[]) {
             else if (namecontains("hand03")) {
                 n = 21;
                 d = 86732569;
-                println(n, d);
+                println(1, d);
+                println(n);
                 println(502634415, 800310983);
                 println(430071672, 409710892);
                 println(760313542, 968221089);
@@ -261,25 +317,66 @@ int main(int argc, char* argv[]) {
                 // Merin 勝利パターン 3
                 return 0;
             }
-            else if (namecontains("hand")) {
-                cerr << "Invalid filename: " << filename << endl;
-                return 1;
-            }
             n = rnd.next(1, MaxN);
             d = rnd.next(1, MaxD);
+            q_sum = rnd.next(1, MaxQ);
+            maxN = rnd.next(1, MaxQ);
         }
     }
+    
+    int total_query = 0, damage = d;
+    vector<vector<pair<long long, long long>>> queries;
 
-    vector<pair<long long, long long>> slimes(n);
-    for (int i = 0; i < n; ++i) {
-        slimes[i].first = rnd.next(1LL, maxH);
-        slimes[i].second = rnd.next(1LL, maxC);
+    // 大量少数ケースはダメージを小さくする (Merin が勝つパターンが出やすいように)
+    if (namecontains("massive-small")) {
+        damage = rnd.next(5, 20);
+    }
+
+    while(true) {
+        int num = rnd.next(1LL, maxN);
+
+        // 特定のケースの hand は num は小さくする
+        if (namecontains("massive-small")) num = rnd.next(2LL, 5LL);
+
+        if(total_query + num > q_sum) {
+            if(queries.empty()) continue;
+            else break;
+        }
+        total_query += num;
+
+        if (namecontains("massive-small")) {
+            vector<pair<long long, long long>> query;
+            long long h1 = rnd.next(1LL, maxH);
+            long long c1 = rnd.next(1LL, maxC);
+            c1 = min(c1 + 1 - (c1 % 2), maxC);
+            query.emplace_back(num, -1);
+            query.emplace_back(h1, c1);
+
+            for(int i = 0; i < num - 1; ++i) {
+                long long h2 = max(1LL, min(h1 + damage + rnd.next(- damage, damage), maxH));
+                long long c2 = rnd.next(1LL, maxC);
+                c2 = min(c2 + 1 - (c2 % 2), maxC);
+                query.emplace_back(h2, c2);
+            }
+            queries.emplace_back(query);
+            continue;
+        }
+
+        vector<pair<long long, long long>> query;
+        query.emplace_back(num, -1);
+        for (int i = 0; i < num; ++i) {
+            query.emplace_back(pair{rnd.next(1LL, maxH), rnd.next(1LL, maxC)});
+        }
+        queries.emplace_back(query);
     }
 
     // 出力
-    println(n, d);
-    for (const auto &slime : slimes) {
-        println(slime.first, slime.second);
+    println(queries.size(), damage);
+    for (const auto &query : queries) {
+        for (auto &info : query) {
+            if(info.second == -1) println(info.first);
+            else println(info.first, info.second);
+        }
     }
 
     return 0;

@@ -53,13 +53,26 @@ if __name__ == "__main__":
     input = sys.stdin.read
     data = input().split()
 
-    n = int(data[0])
-    damage = int(data[1])
-    slimes = []
+    index = 0
+    q = int(data[index])
+    index += 1
+    damage = int(data[index])
+    index += 1
+    
+    results = []
+    
+    for _ in range(q):
+        n = int(data[index])
+        index += 1
+        
+        slimes = []
+        for i in range(n):
+            h = int(data[index])
+            c = int(data[index + 1])
+            slimes.append((h, c))
+            index += 2
+        
+        results.append(solve_grundy_fast(n, damage, slimes))
 
-    for i in range(n):
-        h = int(data[2 + 2 * i])
-        c = int(data[3 + 2 * i])
-        slimes.append((h, c))
-
-    print(solve_grundy_fast(n, damage, slimes))
+    for res in results:
+        print(res)
